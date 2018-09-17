@@ -28,10 +28,18 @@ module.exports = function(app) {
 
 // HTML ROUTE OVERVIEW
   // Welcome page - Main landing page for forum
-    // get("/")
+    app.get("/", function(req, res) {
+      res.sendFile(path.join(__dirname, "../public/blog.html"));
+    });
   // Category page - Page listing all posts for a specific category (ex. HTML category)
-    // get("/:category")
+    app.get("/category", function(req, res) {
+      res.sendFile(path.join(__dirname, "../public/cms.html"));
+    });
   // Individual Post page - Page with original post and all comments
-    // get("/:category/:id")
+    app.get("/post", function(req, res) {
+      res.sendFile(path.join(__dirname, "../public/blog.html"));
+    });
   // Create Post page - Page to create a forum post
-    // get("/create")
+    app.get("/create", function(req, res) {
+      res.sendFile(path.join(__dirname, "../public/blog.html"));
+    });
