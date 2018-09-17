@@ -22,3 +22,21 @@ module.exports = function(app) {
     });
   });
 };
+
+// API ROUTING OVERVIEW
+  // Welcome page - Main landing page for forum
+    // GET for recent posts
+      get("/api/posts", function(req, res) {
+        db.Post.findOne({where: {
+          createdAt: recent
+        }})
+      });
+  // Category page - Page listing all posts for a specific category (ex. HTML category)
+    // GET for all posts in that category
+      get("/api/:category", function(req, res) {
+        db.Post.findAll({
+          where: {
+            category: req.params.category
+          }
+        })
+      })

@@ -25,3 +25,13 @@ module.exports = function(app) {
     res.render("404");
   });
 };
+
+// HTML ROUTE OVERVIEW
+  // Welcome page - Main landing page for forum
+    // get("/")
+  // Category page - Page listing all posts for a specific category (ex. HTML category)
+    // get("/:category")
+  // Individual Post page - Page with original post and all comments
+    // get("/:category/:id")
+  // Create Post page - Page to create a forum post
+    // get("/create")
