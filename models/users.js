@@ -4,12 +4,12 @@ module.exports = function(sequelize, DataTypes) {
     password: DataTypes.TEXT
   });
   Users.associate = function(models) {
-    Users.hasMany(models.Forum,{
+    Users.hasMany(models.Forum, {
       onDelete: "cascade"
     });
   };
   Users.associate = function(models) {
-    Users.hasMany(models.Comments,{
+    Users.hasMany(models.Comments, {
       onDelete: "cascade"
     });
   };
