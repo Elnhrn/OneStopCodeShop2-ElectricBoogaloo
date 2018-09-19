@@ -11,11 +11,12 @@ module.exports = function(app) {
     });
   });
 
+  // THIS WORKS TOO!!!!!!!!!!!
   // Load example page and pass in an example by id
   // app.get("/forum", function(req, res) {
-  //   db.Forums.findAll({}).then(function(dbForums) {
+  //   db.Forum.findAll({}).then(function(dbForum) {
   //     res.render("example", {
-  //       forum: dbForums
+  //       forum: dbForum
   //     });
   //   });
   // });

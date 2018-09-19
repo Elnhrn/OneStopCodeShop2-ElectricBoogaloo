@@ -1,4 +1,5 @@
-<div class="container">
+{{!-- this works for the user database - will have to edit for collin --}}
+{{!-- <div class="container">
   <div class="row">
     <div class="col-8 offset-2">
       <div class="card mt-4">
@@ -8,6 +9,49 @@
           <div>
             <p><strong>ID</strong>: {{this.id}}</p>
             <p><strong>Title</strong>: {{this.username}}</p>
+          </div>
+          {{/each}}
+            <a href="/">← Back To Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+
+{{!-- THIS WORKS FOR FORUMS - will have to change for collin --}}
+{{!-- <div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card mt-4">
+        <div class="card-body">
+          <h5 class="card-title">Forum</h5>
+          {{#each forum}}
+          <div>
+            <p><strong>ID</strong>: {{this.id}}</p>
+            <p><strong>Title</strong>: {{this.title}}</p>
+            <p><strong>Body</strong>: {{this.body}}</p>
+          </div>
+          {{/each}}
+            <a href="/">← Back To Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card mt-4">
+        <div class="card-body">
+          <h5 class="card-title">Forum</h5>
+          {{#each forum}}
+          <div>
+            <p><strong>ID</strong>: {{this.id}}</p>
+            <p><strong>Title</strong>: {{this.title}}</p>
+            <p><strong>Body</strong>: {{this.body}}</p>
           </div>
           {{/each}}
             <a href="/">← Back To Home</a>
