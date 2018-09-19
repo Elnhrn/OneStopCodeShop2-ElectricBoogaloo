@@ -1,0 +1,34 @@
+.container {
+  margin-top: 30px;
+}
+
+#messageArea {
+  display: none;
+}
+.card {
+  margin: 30px;
+}
+.chatWindow {
+  border: solid 3px darkblue;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+#usersOnlineH4 {
+  text-align: center;
+  padding: 20px;
+}
+#chatWindow
+{
+    overflow:   auto;
+    position:   relative;
+    width:      100%;
+    height:     400px;
+}
+#chat
+{
+    position:   absolute;
+    bottom:     0;
+    max-height: 400px;
+    width: 90%;
+}
