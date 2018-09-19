@@ -10,5 +10,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
   };
+  Comments.associate = function(models) {
+    Comments.belongsTo(models.Forum, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   return Comments;
 };

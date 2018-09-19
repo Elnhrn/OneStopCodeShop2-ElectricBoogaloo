@@ -1,0 +1,1 @@
+INSERT INTO exampledb.users (username, password, createdAt, updatedAt) VALUES ("enea", "butthut", "2018-09-18", "2018-09-18"), ("elaine", "weenyhutJR","2018-09-18","2018-09-18"), ("jordan", "spongebob", "2018-09-18", "2018-09-18"), ("collin", "fumanchew", "2018-09-18", "2018-09-18"), ("roger", "stupid", "2018-09-18", "2018-09-18");

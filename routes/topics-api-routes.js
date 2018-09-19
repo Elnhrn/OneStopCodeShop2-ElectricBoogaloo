@@ -10,55 +10,55 @@ var db = require("../models");
 
 module.exports = function(app) {
   // GET route for getting all of the post.
-  app.get("/api/post", function(req, res) {
+  app.get("/api/topics", function(req, res) {
     var query = {};
     // might need to change this so that it is referencing the proper forum post and any comments associated with that post.
     if (req.query.users_id) {
-      query.UsersId = req.query.users_id;
+      query.usersId = req.query.users_id;
     }
-    db.Post.findAll({
+    db.Topics.findAll({
       where: query,
-      include: [db.Users.username, db.Comments.comment]
-    }).then(function(dbForum) {
-      res.json(dbForum);
+      include: [db.Users]
+    }).then(function(dbTopics) {
+      res.json(dbTopics);
     });
   });
   // Get route for retrieving a single post.
-  app.get("/api/post/:id", function(req, res) {
-    db.Forum.findOne({
+  app.get("/api/topics/:id", function(req, res) {
+    db.Topics.findOne({
       where: {
         id: req.params.id
       },
-      include: [db.Users.username, db.Comments.comment]
-    }).then(function(dbForum) {
-      res.json(dbForum);
+      include: [db.Users]
+    }).then(function(dbTopics) {
+      res.json(dbTopics);
     });
   });
   // POST route for saving a new post
-  app.post("/api/post", function(req, res) {
-    db.Post.create(req.body).then(function(dbForum) {
-      res.json(dbForum);
+  app.post("/api/topics", function(req, res) {
+    db.Topics.create(req.body).then(function(dbTopics) {
+      res.json(dbTopics);
     });
   });
   // DELETE route for deleting posts
-  app.delete("/api/post/:id", function(req, res) {
-    db.Forum.destroy({
+  app.delete("/api/topics/:id", function(req, res) {
+    db.Topics.destroy({
       where: {
         id: req.params.id
       },
-      include: [db.Comments.comment]
-    }).then(function(dbForum) {
-      res.json(dbForum);
+      include: [db.Users]
+    }).then(function(dbTopics) {
+      res.json(dbTopics);
     });
   });
   // PUT route for updating posts
-  app.put("/api/post", function(req, res) {
-    db.Forum.update(req.body, {
+  app.put("/api/topics", function(req, res) {
+    db.Topics.update(req.body, {
       where: {
         id: req.body.id
       }
-    }).then(function(dbForum) {
-      res.json(dbForum);
+    }).then(function(dbTopics) {
+      res.json(dbTopics);
     });
   });
 };
