@@ -4,12 +4,30 @@ module.exports = function(app) {
   // HTML ROUTE OVERVIEW
   // Welcome page - Main landing page for forum
   app.get("/", function(req, res) {
-    res.render("index", {
+    res.render("login", {
       title: "Form Validation",
       success: false,
       errors: false
     });
     // res.redirect("/login");
+  });
+
+  app.post("/submit", function(req) {
+    req.check("email", "Invalid email address").isEmail();
+    req
+      .check("password", "Password is invalid")
+      .isLength({
+        min: 4
+      })
+      .equals(req.body.confirmPassword);
+    var errors = req.validationErrors();
+    if (errors) {
+      req.session.errors = errors;
+      req.session.success = false;
+    } else {
+      req.session.success = true;
+    }
+    res.redirect("/");
   });
 
   app.get("/login", function(req, res) {
