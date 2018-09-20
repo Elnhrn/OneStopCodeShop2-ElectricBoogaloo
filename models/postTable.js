@@ -37,7 +37,6 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "cascade",
             onUpdate: "cascade"
         })
-    };
      Posts.belongsTo(models.Users, {
         foreignKey: {
             allowNull: false
@@ -48,6 +47,6 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     });
-    
+};
     return Posts;
 };

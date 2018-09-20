@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "forumdb",
+    "database": "forum_db",
     "host": "localhost",
     "dialect": "mysql"
   },
