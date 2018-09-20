@@ -1,4 +1,8 @@
-{{#unless else}}
+{{#if success }}
+    <section class="success">
+        <h2>Successful Validation!</h2>
+    </section>
+{{ else }}
     {{# if errors }}
         <section class="errors">
             <ul>
@@ -8,7 +12,15 @@
             </ul>
         </section>
     {{/if}}
-    <form action="/login" method="post">
+    <form action="/submit" method="post">
+        <div class="input">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName">
+        </div>
+        <div class="input">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName">
+        </div>
         <div class="input">
             <label for="email">E-Mail</label>
             <input type="text" id="email" name="email">
@@ -21,7 +33,6 @@
             <label for="confirmPassword">Confirm Password</label>
             <input type="password" id="confirmPassword" name="confirmPassword">
         </div>
-        <button type="submit">Log In</button>
+        <button type="submit">Sign up</button>
     </form>
-    <a href="/createAccount">Don't have an account?</a>
-{{/unless}}
+{{/if}}
