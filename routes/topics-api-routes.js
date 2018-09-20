@@ -1,10 +1,3 @@
-// *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
-
-// Dependencies
-// =============================================================
-
 // Requiring our models
 var db = require("../models");
 
@@ -13,12 +6,12 @@ module.exports = function(app) {
   app.get("/api/topics", function(req, res) {
     var query = {};
     // might need to change this so that it is referencing the proper forum post and any comments associated with that post.
-    if (req.query.users_id) {
-      query.usersId = req.query.users_id;
+    if (req.query.posts_id) {
+      query.PostsId = req.query.posts_id;
     }
     db.Topics.findAll({
       where: query,
-      include: [db.Users]
+      include: [db.Posts]
     }).then(function(dbTopics) {
       res.json(dbTopics);
     });
@@ -29,7 +22,7 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       },
-      include: [db.Users]
+      include: [db.Posts]
     }).then(function(dbTopics) {
       res.json(dbTopics);
     });
@@ -45,8 +38,7 @@ module.exports = function(app) {
     db.Topics.destroy({
       where: {
         id: req.params.id
-      },
-      include: [db.Users]
+      }
     }).then(function(dbTopics) {
       res.json(dbTopics);
     });
