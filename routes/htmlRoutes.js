@@ -4,7 +4,12 @@ module.exports = function(app) {
   // HTML ROUTE OVERVIEW
   // Welcome page - Main landing page for forum
   app.get("/", function(req, res) {
-    res.redirect("/login");
+    res.render("index", {
+      title: "Form Validation",
+      success: false,
+      errors: false
+    });
+    // res.redirect("/login");
   });
 
   app.get("/login", function(req, res) {
