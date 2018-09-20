@@ -1,22 +1,33 @@
 .container {
   margin-top: 30px;
 }
+.chatContainer {
+  
+}
 
 #messageArea {
   display: none;
 }
 .card {
   margin: 30px;
+  
 }
 .chatWindow {
-  border: solid 3px darkblue;
+  border: solid 1px rgb(54, 54, 54);
   padding: 30px;
   margin-bottom: 30px;
+  background: white; 
+}
+.chatMessage {
+  font-size: .8em;
+  width: 90%;
+  margin: auto;
 }
 
 #usersOnlineH4 {
   text-align: center;
-  padding: 20px;
+  font-size: 1em;
+ 
 }
 #chatWindow
 {
@@ -31,4 +42,32 @@
     bottom:     0;
     max-height: 400px;
     width: 90%;
+}
+
+#backgroundtestbox {
+  background: red;
+  width: 600px;
+  margin: auto;
+  height: 600px;
+}
+
+/* WINDOW COLLAPSE */
+
+#collapseOne
+{
+    position: absolute !important;
+    z-index: 20;
+    width: 100%;
+    top: 50px;
+}
+.collapse.in {
+    display: block;
+    position: absolute;
+    z-index: 20;
+    width: 100%;
+    top: 50px;
+}
+.navbar-collapse
+{
+    max-height: none !important;
 }

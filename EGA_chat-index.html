@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-      
+
       <meta name="viewport" 
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no" 
             charset="utf-8">
 
       <link rel="stylesheet" 
@@ -23,59 +23,110 @@
                   crossorigin="anonymous">
       </script>
 
-      <script src="/socket.io/socket.io.js">
 
+      <link       rel="stylesheet" 
+                  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+      </script>
+
+      <script src="/socket.io/socket.io.js">
       </script>
 
       <title>Chat Page</title>
+
 </head>
 
 <body>
-      <div class="container">
+      <div class="panel panel-primary">
 
-            <div id="userFormArea" class="row">
-                  <div class="col-md-4">
-                        <form id="userForm">
-                              <div class="form-group">
-                                    <label>Enter Username:</label>
-                                    <input class="form-control" id="username">
-                                    <br />
-                                    <input type="submit" class="btn btn-primary" value="Login">
-                              </div>
-                        </form>
-                  </div>
-            </div>
-            <div class="row" id="messageArea">
-                  <div class="col-md-4">
-                        <div class="card card-body bg-light">
-                              <h4 id="usersOnlineH4">USERS ONLINE:</h4>
-                              <ul class="list-group" id="users"></ul>
-                        </div>
-                  </div>
-                  <div class="col-md-8">
-                        <div class="chatWindow" id="chatWindow">
-                              <div class="chat" id="chat">
+            <div  class="panel-heading text-center" 
+                  id="accordion" 
+                  data-toggle="collapse" 
+                  data-parent="#accordion" 
+                  href="#collapseOne">
 
-                              </div>
-                        </div>
-                        <form id="messageForm">
-                              <div class="form-group">
-                                    <label>Enter Message</label>
-                                    <textarea class="form-control" id="message"></textarea>
-                                    <br />
-                                    <input type="submit" class="btn btn-primary" value="send message">
-                              </div>
-                        </form>
+                  <button class="btn btn-success" id="chatButton">
+                        CHAT
+                  </button>
 
-                  </div>
             </div>
 
+            <div class="panel-collapse collapse" id="collapseOne">
+
+                  <div class="container">
+
+                        <div class="row">
+
+                              <div class="col-md-4" id="userFormArea">
+
+                                    <form id="userForm">
+
+                                          <div class="form-group">
+                                                <label>Enter Username:</label>
+
+                                                <input class="form-control" id="username">
+                                                <br />
+                                                <input      type="submit" 
+                                                            class="btn btn-primary" 
+                                                            value="Login">
+                                          </div>
+                                    </form>
+                              </div>
+                        </div>
+
+                        <div class="container chatContainer">
+
+                              <div class="row" id="messageArea">
+
+                                    <div class="col-md-4">
+
+                                          <div class="card card-body bg-light">
+
+                                                <h4 id="usersOnlineH4">USERS ONLINE:</h4>
+                                                <ul class="list-group" id="users">
+                                                </ul>
+
+                                          </div>
+                                    </div>
+
+                                    <div class="col-md-8">
+
+                                          <div class="chatWindow" id="chatWindow">
+
+                                                <div class="chat" id="chat">
+
+                                                </div>
+                                          </div>
+
+                                          <form id="messageForm">
+
+                                                <div class="form-group">
+                                                      <label>Enter Message</label>
+                                                      <textarea class="form-control" id="message">
+
+                                                      </textarea>
+                                                      <br />
+                                                      <input      type="submit" 
+                                                                  class="btn btn-primary" 
+                                                                  value="send message">
+                                                </div>
+                                          </form>
+
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
       </div>
+      
       <script>
+
             $(function () {
 
-                  // Grab all html pointers
                   var socket = io.connect();
+                  // Grab all html pointers 
                   var $messageForm = $("#messageForm");
                   var $message = $("#message");
                   var $chat = $("#chat");
@@ -94,20 +145,20 @@
                         socket.emit("send message", $message.val());
                         $message.val("");
                   });
-                  
+
                   // Allows user to simply press enter at the login screen instead of hitting the submit button.
                   $('.input').keypress(function (e) {
                         if (e.which == 13) {
-                        $('form#login').submit();
-                        return false;    
+                              $('form#login').submit();
+                              return false;
                         }
-                        });
+                  });
 
                   socket.on("new message", function (data) {
                         $chat.append('<div class="chatMessage card card-body bg-light"><strong>' + data.user + ':</strong>' + data.msg + '</div>');
                         updateScroll();
                   })
-                  
+
                   // When the user puts in their username, this form emits a new user method with the value input by the user. The server packages this input and runs a function that updates the username array. This current function continues on to say that if the server has pushed back the data it has processed, hide the login information and display the message area.
                   $userForm.submit(function (e) {
                         e.preventDefault();
@@ -129,23 +180,26 @@
                         $users.html(html);
                   })
                   // Ensures that the scroll overflow is always kept at it's lowest point. This way, all new messages originate from a static point just above the message box.
-                  function updateScroll(){
+                  function updateScroll() {
                         var scroll = document.getElementById("chatWindow");
                         scroll.scrollTop = scroll.scrollHeight;
-}
+                  }
             });
 
       </script>
 
 
 
-      <script     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+      <script     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"               
                   integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
                   crossorigin="anonymous">
+
       </script>
-      
-      <script     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"                                                                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+
+      <script     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+                  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                   crossorigin="anonymous">
+
       </script>
 
 </body>
