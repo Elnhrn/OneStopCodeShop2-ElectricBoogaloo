@@ -6,13 +6,13 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.render("login", {
       title: "Form Validation",
-      success: false,
-      errors: false
+      success: req.session.success,
+      errors: req.session.errors
     });
     // res.redirect("/login");
   });
 
-  app.post("/submit", function(req) {
+  app.post("/submit", function(req, res) {
     req.check("email", "Invalid email address").isEmail();
     req
       .check("password", "Password is invalid")
