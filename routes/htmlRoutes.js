@@ -4,7 +4,11 @@ module.exports = function(app) {
   // HTML ROUTE OVERVIEW
   // Welcome page - Main landing page for forum
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.redirect("/login");
+  });
+
+  app.get("/login", function(req, res) {
+    res.render("login");
   });
   // Category page - Page listing all posts for a specific category (ex. HTML category)
   app.get("/category", function(req, res) {
