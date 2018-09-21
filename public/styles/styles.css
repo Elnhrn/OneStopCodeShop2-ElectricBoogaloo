@@ -18,6 +18,10 @@ nav {
   display: inline-block;
 }
 
+.navbar-fixed {
+  height: 49px;
+}
+
 .brand-logo {
   font-family: 'Playfair Display', serif;
   font-size: 24px !important;
