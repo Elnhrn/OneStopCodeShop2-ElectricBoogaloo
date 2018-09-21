@@ -17,20 +17,20 @@ module.exports = function (sequelize, DataTypes) {
         },
     });
 
-Replies.associate = function (models) {
-    Replies.belongsTo(models.Posts, {
-        foreignKey: {
-            allowNull: false
-        }
-    });
+    Replies.associate = function (models) {
+        Replies.belongsTo(models.Posts, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
 
-    Replies.belongsTo(models.Users, {
-        foreignKey: {
-            allowNull: false
-        }
-    });
-};
+        Replies.belongsTo(models.Users, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
 
-return Replies;
+    return Replies;
 };
 

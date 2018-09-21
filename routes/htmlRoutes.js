@@ -1,28 +1,70 @@
-// 1. home page
-// 2. login/register
-// 3. my account
-// 4. by category/topic
-// 5. by author
-// 6. by post
-// 7. create post
-
 var db = require("../models");
 
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    res.render("index", {
-      msg: "Welcome to the electric boogaloo!"
-    });
+    if (req.session.success) {
+      res.render("index", {
+        msg: "Welcome to the electric boogaloo!"
+      });
+    } else {
+      res.redirect("/login");
+    }
+    req.session.errors = null;
   });
-
+  
   // Load example page and pass in an example by id
+  // LOGIN ROUTES
   app.get("/login", function(req, res) {
     res.render("login/index", {
-      msg: "Welcome back/Create new?"
+      msg: "Welcome back/Create new?",
+      title: "Form Validation",
+      success: req.session.success,
+      errors: req.session.errors
     });
   });
 
+  app.post("/login", function(req, res) {
+    req.check("email", "Invalid email address").isEmail();
+    req
+      .check("password", "Password is invalid")
+      .isLength({
+        min: 4
+      })
+      .equals(req.body.confirmPassword);
+    var errors = req.validationErrors();
+    if (errors) {
+      req.session.errors = errors;
+      req.session.success = false;
+    } else {
+      req.session.success = true;
+      res.redirect("/");
+    }
+  });
+
+  // CREATE ACCOUNT ROUTES
+  app.get("/createAccount", function(req, res) {
+    res.render("createAccount");
+  });
+
+  app.post("/submit", function(req, res) {
+    req.check("email", "Invalid email address").isEmail();
+    req
+      .check("password", "Password is invalid")
+      .isLength({
+        min: 4
+      })
+      .equals(req.body.confirmPassword);
+    var errors = req.validationErrors();
+    if (errors) {
+      req.session.errors = errors;
+      req.session.success = false;
+    } else {
+      req.session.success = true;
+    }
+    res.redirect("/");
+  });
+    
   app.get("/forum", function(req, res) {
     res.render("forum/index", {
       msg: "Welcome to the forum!"
@@ -61,16 +103,16 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/add-a-post", function(req, res) {
-    // db.Posts.create({}).then(function(dbPosts) {
+  app.post("/add-a-post", function(req, res) {
+    db.Posts.create({}).then(function(dbPosts) {
       res.render("createPost/index", {
-    //     newPost: dbPosts
-    //   });
+        newPost: dbPosts
+      });
     });
   });
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
+  app.get("/logout", function(req, res) {
+    req.session.destroy();
+    res.redirect("/login");
   });
 };

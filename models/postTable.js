@@ -22,7 +22,7 @@ module.exports = function (sequelize, DataTypes) {
             },
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         },
-        createdAt: {
+        updatedAt: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
@@ -38,17 +38,17 @@ module.exports = function (sequelize, DataTypes) {
             onUpdate: "cascade"
         });
 
-    Posts.belongsTo(models.Users, {
-        foreignKey: {
-            allowNull: false
-        }
-    });
+        Posts.belongsTo(models.Users, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
 
-    Posts.belongsTo(models.Topics, {
-        foreignKey: {
-            allowNull: false
-        }
-    });
-};
-return Posts;
+        Posts.belongsTo(models.Topics, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+    return Posts;
 }
