@@ -3,10 +3,10 @@
         <h2>Successful Validation!</h2>
     </section>
 {{ else }}
-    {{# if errors }}
+    {{#if errors }}
         <section class="errors">
             <ul>
-                {{# each errors }}
+                {{#each errors }}
                     <li>{{ this.msg }}</li>
                 {{/each}}
             </ul>

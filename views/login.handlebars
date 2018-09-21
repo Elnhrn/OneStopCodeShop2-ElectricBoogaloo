@@ -1,8 +1,8 @@
-{{#unless else}}
-    {{# if errors }}
+{{!-- {{#unless else}} --}}
+    {{#if errors }}
         <section class="errors">
             <ul>
-                {{# each errors }}
+                {{#each errors }}
                     <li>{{ this.msg }}</li>
                 {{/each}}
             </ul>
@@ -24,4 +24,4 @@
         <button type="submit">Log In</button>
     </form>
     <a href="/createAccount">Don't have an account?</a>
-{{/unless}}
+{{!-- {{/unless}} --}}

@@ -26,15 +26,13 @@ module.exports = function(app) {
       req.session.success = false;
     } else {
       req.session.success = true;
+      res.redirect("/");
     }
-    res.redirect("/");
   });
 
   app.get("/", function(req, res) {
     if (req.session.success) {
       res.render("index");
-    } else {
-      res.render("login");
     }
   });
 

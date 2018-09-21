@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   expressSession({
-    secret: "butthole",
+    secret: "JRS",
     saveUninitialized: false,
     resave: false
   })
