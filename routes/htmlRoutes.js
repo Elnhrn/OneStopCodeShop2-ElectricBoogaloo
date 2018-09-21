@@ -23,6 +23,12 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/forum", function(req, res) {
+    res.render("forum/index", {
+      msg: "Welcome to the forum!"
+    });
+  });
+
   app.get("/account", function(req, res) {
     db.Users.findOne({}).then(function(dbUsers) {
       res.render("myAccount/index", {
@@ -56,10 +62,10 @@ module.exports = function(app) {
   });
 
   app.get("/add-a-post", function(req, res) {
-    db.Posts.create({}).then(function(dbPosts) {
+    // db.Posts.create({}).then(function(dbPosts) {
       res.render("createPost/index", {
-        newPost: dbPosts
-      });
+    //     newPost: dbPosts
+    //   });
     });
   });
 
