@@ -60,6 +60,11 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
+  app.get("/logout", function(req, res) {
+    req.session.destroy();
+    res.redirect("/login");
+  });
+
   // Category page - Page listing all posts for a specific category (ex. HTML category)
   app.get("/category", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/category.html"));
