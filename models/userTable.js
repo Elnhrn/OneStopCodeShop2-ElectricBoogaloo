@@ -22,7 +22,9 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
     });
-     Users.associate = function(models) {
+
+
+    Users.associate = function(models) {
         Users.hasMany(models.Posts, {
             foreignKey: {
                 allowNull: false
@@ -30,7 +32,8 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "restrict",
             onUpdate: "cascade"
         });
-         Users.hasMany(models.Replies, {
+
+        Users.hasMany(models.Replies, {
             foreignKey: {
                 allowNull: false
             },
@@ -38,5 +41,7 @@ module.exports = function (sequelize, DataTypes) {
             onUpdate: "cascade"
         })
     };
-     return Users;
-}; 
+
+    return Users;
+};
+

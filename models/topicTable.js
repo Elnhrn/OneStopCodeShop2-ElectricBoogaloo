@@ -15,7 +15,8 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
     });
-     Topics.associate = function (models) {
+
+    Topics.associate = function (models) {
         Topics.hasMany(models.Posts, {
             foreignKey: {
                 allowNull: false
