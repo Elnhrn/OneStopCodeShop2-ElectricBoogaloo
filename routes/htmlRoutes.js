@@ -49,12 +49,15 @@ module.exports = function(app) {
         res.redirect("/forum");
       }
     });
-    // TODO: Use the above method to check user's password in database
   });
 
   // CREATE ACCOUNT ROUTES
   app.get("/register", function(req, res) {
-    res.render("register/index");
+    res.render("register/index", {
+      title: "Form Validation",
+      success: req.session.success,
+      errors: req.session.errors
+    });
   });
 
   app.post("/register", function(req, res) {
@@ -70,9 +73,15 @@ module.exports = function(app) {
       req.session.errors = errors;
       req.session.success = false;
     } else {
-      req.session.success = true;
+      db.Users.create({
+        user_name: req.body.username,
+        user_pass: req.body.password,
+        user_level: 0
+      }).then(function() {
+        req.session.success = true;
+        res.redirect("/forum");
+      });
     }
-    res.redirect("/forum");
   });
 
   app.get("/forum", function(req, res) {
