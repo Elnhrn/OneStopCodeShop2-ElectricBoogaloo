@@ -47,8 +47,8 @@ module.exports = function(app) {
   });
 
   // CREATE ACCOUNT ROUTES
-  app.get("/createAccount", function(req, res) {
-    res.render("createAccount");
+  app.get("/register", function(req, res) {
+    res.render("register/index");
   });
 
   app.post("/submit", function(req, res) {
@@ -66,8 +66,9 @@ module.exports = function(app) {
     } else {
       req.session.success = true;
     }
-    res.redirect("/");
-    
+    res.redirect("/forum");
+  });
+
   app.get("/forum", function(req, res) {
     if (req.session.success) {
       res.render("forum/index", {

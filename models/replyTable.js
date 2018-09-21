@@ -7,14 +7,14 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        createdAt: {
-            type: DataTypes.TIMESTAMP,
-            allowNull: false,
-            validate: {
-                len: [1]
-            },
-            DEFAULT: CURRENT_TIMESTAMP
-        },
+        // createdAt: {
+        //     type: DataTypes.TIMESTAMP,
+        //     allowNull: false,
+        //     validate: {
+        //         len: [1]
+        //     },
+        //     DEFAULT: CURRENT_TIMESTAMP
+        // },
         reply_post: {
             type: DataTypes.INTEGER,
             allowNull: false,

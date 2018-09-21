@@ -13,11 +13,11 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
-        },
-        createdAt: {
-            type: DataTypes.TIMESTAMP,
-            allowNull: false,
-            DEFAULT: CURRENT_TIMESTAMP
+        // },
+        // createdAt: {
+        //     type: DataTypes.TIMESTAMP,
+        //     allowNull: false,
+        //     DEFAULT: CURRENT_TIMESTAMP
         }
     });
 
