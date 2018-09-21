@@ -29,20 +29,20 @@ module.exports = function(app) {
   });
 
   app.post("/login", function(req, res) {
-    req.check("email", "Invalid email address").isEmail();
-    req
-      .check("password", "Password is invalid")
-      .isLength({
-        min: 4
-      })
-      .equals(req.body.confirmPassword);
+    // req
+    //   .check("password", "Password is invalid")
+    //   .isLength({
+    //     min: 4
+    //   })
+    //   .equals(req.body.confirmPassword);
+    // TODO: Use the above method to check user's password in database
     var errors = req.validationErrors();
     if (errors) {
       req.session.errors = errors;
       req.session.success = false;
     } else {
       req.session.success = true;
-      res.redirect("/");
+      res.redirect("/forum");
     }
   });
 
@@ -51,8 +51,7 @@ module.exports = function(app) {
     res.render("register/index");
   });
 
-  app.post("/submit", function(req, res) {
-    req.check("email", "Invalid email address").isEmail();
+  app.post("/register", function(req, res) {
     req
       .check("password", "Password is invalid")
       .isLength({
@@ -60,6 +59,7 @@ module.exports = function(app) {
       })
       .equals(req.body.confirmPassword);
     var errors = req.validationErrors();
+    // TODO: Push username and password to database
     if (errors) {
       req.session.errors = errors;
       req.session.success = false;
@@ -122,6 +122,6 @@ module.exports = function(app) {
 
   app.get("/logout", function(req, res) {
     req.session.destroy();
-    res.redirect("/login");
+    res.redirect("/");
   });
 };
