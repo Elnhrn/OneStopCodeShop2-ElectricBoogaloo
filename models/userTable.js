@@ -18,12 +18,13 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             DEFAULT: 0
-        },
-        createdAt: {
-            type: DataTypes.TIMESTAMP,
-            allowNull: false,
-            DEFAULT: CURRENT_TIMESTAMP
         }
+        // },
+        // createdAt: {
+        //     type: DataTypes.TIMESTAMP,
+        //     allowNull: false,
+        //     DEFAULT: CURRENT_TIMESTAMP
+        // }
     });
 
 
