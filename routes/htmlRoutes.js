@@ -68,7 +68,6 @@ module.exports = function(app) {
       })
       .equals(req.body.confirmPassword);
     var errors = req.validationErrors();
-    // TODO: Push username and password to database
     if (errors) {
       req.session.errors = errors;
       req.session.success = false;
