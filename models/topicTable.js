@@ -25,6 +25,5 @@ module.exports = function (sequelize, DataTypes) {
             onUpdate: "cascade"
         })
     };
-
-    return Topics;
-};
+     return Topics;
+}; 

@@ -23,6 +23,7 @@ module.exports = function (sequelize, DataTypes) {
         },
     });
 
+
     Users.associate = function(models) {
         Users.hasMany(models.Posts, {
             foreignKey: {
@@ -43,3 +44,4 @@ module.exports = function (sequelize, DataTypes) {
 
     return Users;
 };
+

@@ -1,6 +1,10 @@
 CREATE DATABASE forum_db;
 USE forum_db;
 
+DROP DATABASE IF EXISTS testdb;
+CREATE DATABASE testdb;
+
+
 /*
 -- setup tables for forum posts
 
@@ -14,7 +18,7 @@ UNIQUE INDEX user_name_unique (user_name),
 PRIMARY KEY (user_id)
 )
 
--- this table is for topics
+ -- this table is for topics
 CREATE TABLE topics (
 topic_id INT(8) NOT NULL AUTO_INCREMENT,
 topic_name VARCHAR(255) NOT NULL,
@@ -34,11 +38,13 @@ post_by INT(8) NOT NULL,
 PRIMARY KEY (post_id)
 )
 
+
 -- this table is for replies to posts inside of topics
 CREATE TABLE replies (
 reply_id INT(8) NOT NULL AUTO_INCREMENT,
 reply_content TEXT NOT NULL,
 reply_date DATETIME NOT NULL,
+
 reply_post INT(8) NOT NULL,
 reply_by INT(8) NOT NULL,
 PRIMARY KEY (reply_id)
