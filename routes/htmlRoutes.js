@@ -29,21 +29,27 @@ module.exports = function(app) {
   });
 
   app.post("/login", function(req, res) {
-    // req
-    //   .check("password", "Password is invalid")
-    //   .isLength({
-    //     min: 4
-    //   })
-    //   .equals(req.body.confirmPassword);
+    db.Users.findOne({
+      where: {
+        user_name: req.body.username
+      }
+    }).then(function(user) {
+      req
+        .check("password", "Password is invalid")
+        .isLength({
+          min: 4
+        })
+        .equals(user.user_pass);
+      var errors = req.validationErrors();
+      if (errors) {
+        req.session.errors = errors;
+        req.session.success = false;
+      } else {
+        req.session.success = true;
+        res.redirect("/forum");
+      }
+    });
     // TODO: Use the above method to check user's password in database
-    var errors = req.validationErrors();
-    if (errors) {
-      req.session.errors = errors;
-      req.session.success = false;
-    } else {
-      req.session.success = true;
-      res.redirect("/forum");
-    }
   });
 
   // CREATE ACCOUNT ROUTES
@@ -114,9 +120,9 @@ module.exports = function(app) {
 
   app.get("/add-a-post", function(req, res) {
     // db.Posts.create({}).then(function(dbPosts) {
-      res.render("createPost/index", {
-    //     newPost: dbPosts
-    //   });
+    res.render("createPost/index", {
+      //     newPost: dbPosts
+      //   });
     });
   });
 
