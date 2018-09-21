@@ -27,6 +27,7 @@ PRIMARY KEY (topic_id)
 CREATE TABLE posts (
 post_id INT(8) NOT NULL AUTO_INCREMENT,
 post_subject VARCHAR(255) NOT NULL,
+post_body TEXT NOT NULL,
 post_date DATETIME NOT NULL,
 post_topic INT(8) NOT NULL,
 post_by INT(8) NOT NULL,
@@ -38,7 +39,7 @@ CREATE TABLE replies (
 reply_id INT(8) NOT NULL AUTO_INCREMENT,
 reply_content TEXT NOT NULL,
 reply_date DATETIME NOT NULL,
-reply_topic INT(8) NOT NULL,
+reply_post INT(8) NOT NULL,
 reply_by INT(8) NOT NULL,
 PRIMARY KEY (reply_id)
 )

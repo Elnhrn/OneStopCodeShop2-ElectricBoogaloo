@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        reply_topic: {
+        reply_post: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
