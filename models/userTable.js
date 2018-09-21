@@ -17,10 +17,14 @@ module.exports = function (sequelize, DataTypes) {
         user_level: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
+            DEFAULT: 0
+        }
+        // },
+        // createdAt: {
+        //     type: DataTypes.TIMESTAMP,
+        //     allowNull: false,
+        //     DEFAULT: CURRENT_TIMESTAMP
+        // }
     });
 
 

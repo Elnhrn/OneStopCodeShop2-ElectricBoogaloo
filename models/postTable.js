@@ -14,13 +14,14 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        post_date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
+        // createdAt: {
+        //     type: DataTypes.TIMESTAMP,
+        //     allowNull: false,
+        //     validate: {
+        //         len: [1]
+        //     },
+        //     DEFAULT: CURRENT_TIMESTAMP
+        // },
         post_topic: {
             type: DataTypes.INTEGER,
             allowNull: false,
