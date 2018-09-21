@@ -20,7 +20,6 @@ module.exports = function(app) {
       res.json(dbPost);
     });
   });
-<<<<<<< HEAD
   // Individual Post page - Page with original post and all comments
   // GET for single post
   app.get("/api/posts/:id", function(req, res) {
@@ -62,7 +61,8 @@ module.exports = function(app) {
       category: req.body.category
     }).then(function(dbPost) {
       res.json(dbPost);
-=======
+    })
+  })
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
@@ -70,7 +70,6 @@ module.exports = function(app) {
       dbExample
     ) {
       res.json(dbExample);
->>>>>>> master
     });
   });
 };
