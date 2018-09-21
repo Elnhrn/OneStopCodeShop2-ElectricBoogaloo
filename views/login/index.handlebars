@@ -4,6 +4,31 @@
       <div class="card mt-4">
         <div class="card-body">
           {{msg}}
+          {{#if errors }}
+            <section class="errors">
+                <ul>
+                    {{#each errors }}
+                        <li>{{ this.msg }}</li>
+                    {{/each}}
+                </ul>
+            </section>
+          {{/if}}
+            <form action="/login" method="post">
+                <div class="input">
+                    <label for="email">E-Mail</label>
+                    <input type="text" id="email" name="username">
+                </div>
+                <div class="input">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="input">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword">
+                </div>
+                <button type="submit" id="login">Log In</button>
+            </form>
+            <a href="/createAccount">Don't have an account?</a>
             <a href="/">← Back To Home</a>
         </div>
       </div>

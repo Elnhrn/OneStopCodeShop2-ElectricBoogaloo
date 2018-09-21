@@ -16,10 +16,12 @@ module.exports = function(app) {
       res.render("index", {
         msg: "Welcome to the electric boogaloo!"
       });
+    } else {
+      res.redirect("/login");
     }
     req.session.errors = null;
   });
-  
+
   // Load example page and pass in an example by id
   // LOGIN ROUTES
   app.get("/login", function(req, res) {

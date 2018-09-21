@@ -1,10 +1,6 @@
 CREATE DATABASE forum_db;
 USE forum_db;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
-
-
 /*
 -- setup tables for forum posts
 
