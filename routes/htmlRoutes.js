@@ -12,14 +12,9 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    if (req.session.success) {
-      res.render("index", {
-        msg: "Welcome to the electric boogaloo!"
-      });
-    } else {
-      res.redirect("/login");
-    }
-    req.session.errors = null;
+    res.render("index", {
+      msg: "Welcome to the electric boogaloo!"
+    });
   });
 
   // Load example page and pass in an example by id
@@ -74,9 +69,14 @@ module.exports = function(app) {
     res.redirect("/");
     
   app.get("/forum", function(req, res) {
-    res.render("forum/index", {
-      msg: "Welcome to the forum!"
-    });
+    if (req.session.success) {
+      res.render("forum/index", {
+        msg: "Welcome to the forum!"
+      });
+    } else {
+      res.redirect("/login");
+    }
+    req.session.errors = null;
   });
 
   app.get("/account", function(req, res) {
