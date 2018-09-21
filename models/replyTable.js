@@ -8,43 +8,29 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         createdAt: {
-            type: DataTypes.TIMESTAMP,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 len: [1]
             },
-            DEFAULT: CURRENT_TIMESTAMP
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         },
-        reply_post: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        reply_by: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
+    });
+
+Replies.associate = function (models) {
+    Replies.belongsTo(models.Posts, {
+        foreignKey: {
+            allowNull: false
         }
     });
 
-    Replies.associate = function (models) {
-        Replies.belongsTo(models.Posts, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+    Replies.belongsTo(models.Users, {
+        foreignKey: {
+            allowNull: false
+        }
+    });
+};
 
-        Replies.belongsTo(models.Users, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
-
-    return Replies;
+return Replies;
 };
 

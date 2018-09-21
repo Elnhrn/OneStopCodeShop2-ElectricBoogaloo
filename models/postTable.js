@@ -15,27 +15,18 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         createdAt: {
-            type: DataTypes.TIMESTAMP,
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 len: [1]
             },
-            DEFAULT: CURRENT_TIMESTAMP
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         },
-        post_topic: {
-            type: DataTypes.INTEGER,
+        createdAt: {
+            type: DataTypes.DATE,
             allowNull: false,
-            validate: {
-                len: [1]
-            }
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         },
-        post_by: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        }
     });
 
     Posts.associate = function (models) {
