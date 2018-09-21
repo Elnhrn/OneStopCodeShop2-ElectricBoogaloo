@@ -14,6 +14,11 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
+        createdAt: {
+            type: DataTypes.TIMESTAMP,
+            allowNull: false,
+            DEFAULT: CURRENT_TIMESTAMP
+        }
     });
 
     Topics.associate = function (models) {
@@ -25,5 +30,5 @@ module.exports = function (sequelize, DataTypes) {
             onUpdate: "cascade"
         })
     };
-     return Topics;
+    return Topics;
 }; 

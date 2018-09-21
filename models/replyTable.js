@@ -7,12 +7,13 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        reply_date: {
-            type: DataTypes.DATE,
+        createdAt: {
+            type: DataTypes.TIMESTAMP,
             allowNull: false,
             validate: {
                 len: [1]
-            }
+            },
+            DEFAULT: CURRENT_TIMESTAMP
         },
         reply_post: {
             type: DataTypes.INTEGER,
@@ -36,7 +37,7 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false
             }
         });
-        
+
         Replies.belongsTo(models.Users, {
             foreignKey: {
                 allowNull: false
