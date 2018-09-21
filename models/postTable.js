@@ -44,8 +44,7 @@ module.exports = function (sequelize, DataTypes) {
             },
             onDelete: "cascade",
             onUpdate: "cascade"
-        })
-    };
+        });
 
     Posts.belongsTo(models.Users, {
         foreignKey: {
@@ -58,6 +57,6 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     });
-    
-    return Posts;
 };
+return Posts;
+}
