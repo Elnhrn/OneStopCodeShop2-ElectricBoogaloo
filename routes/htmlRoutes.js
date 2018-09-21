@@ -72,6 +72,11 @@ module.exports = function(app) {
       req.session.success = true;
     }
     res.redirect("/");
+    
+  app.get("/forum", function(req, res) {
+    res.render("forum/index", {
+      msg: "Welcome to the forum!"
+    });
   });
 
   app.get("/account", function(req, res) {
@@ -107,10 +112,10 @@ module.exports = function(app) {
   });
 
   app.get("/add-a-post", function(req, res) {
-    db.Posts.create({}).then(function(dbPosts) {
+    // db.Posts.create({}).then(function(dbPosts) {
       res.render("createPost/index", {
-        newPost: dbPosts
-      });
+    //     newPost: dbPosts
+    //   });
     });
   });
 
