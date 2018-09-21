@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+      <meta name="viewport" 
+            content="width=device-width, initial-scale=1, shrink-to-fit=no" 
+            charset="utf-8">
+
+      <link rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+
+      <link rel="stylesheet" 
+            href="/styles/EGA_chat-styles.css" 
+            media="screen" 
+            title="no title" 
+            charset="utf-8">
+
+      <script     src="https://code.jquery.com/jquery-3.3.1.min.js" 
+                  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                  crossorigin="anonymous">
+      </script>
+
+
+      <link       rel="stylesheet" 
+                  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+      </script>
+
+      <script src="/socket.io/socket.io.js">
+      </script>
+
+      <title>Chat Page</title>
+
+</head>
+
+<body>
+      <div class="panel panel-primary">
+
+            <div  class="panel-heading text-center" 
+                  id="accordion" 
+                  data-toggle="collapse" 
+                  data-parent="#accordion" 
+                  href="#collapseOne">
+
+                  <button class="btn btn-success" id="chatButton">
+                        CHAT
+                  </button>
+
+            </div>
+
+            <div class="panel-collapse collapse" id="collapseOne">
+
+                  <div class="container">
+
+                        <div class="row">
+
+                              <div class="col-md-4" id="userFormArea">
+
+                                    <form id="userForm">
+
+                                          <div class="form-group">
+                                                <label>Enter Username:</label>
+
+                                                <input class="form-control" id="username">
+                                                <br />
+                                                <input      type="submit" 
+                                                            class="btn btn-primary" 
+                                                            value="Login">
+                                          </div>
+                                    </form>
+                              </div>
+                        </div>
+
+                        <div class="container chatContainer">
+
+                              <div class="row" id="messageArea">
+
+                                    <div class="col-md-4">
+
+                                          <div class="card card-body bg-light">
+
+                                                <h4 id="usersOnlineH4">USERS ONLINE:</h4>
+                                                <ul class="list-group" id="users">
+                                                </ul>
+
+                                          </div>
+                                    </div>
+
+                                    <div class="col-md-8">
+
+                                          <div class="chatWindow" id="chatWindow">
+
+                                                <div class="chat" id="chat">
+
+                                                </div>
+                                          </div>
+
+                                          <form id="messageForm">
+
+                                                <div class="form-group">
+                                                      <label>Enter Message</label>
+                                                      <textarea class="form-control" id="message">
+
+                                                      </textarea>
+                                                      <br />
+                                                      <input      type="submit" 
+                                                                  class="btn btn-primary" 
+                                                                  value="send message">
+                                                </div>
+                                          </form>
+
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+      
+      <script>
+
+            $(function () {
+
+                  var socket = io.connect();
+                  // Grab all html pointers 
+                  var $messageForm = $("#messageForm");
+                  var $message = $("#message");
+                  var $chat = $("#chat");
+                  var $chatWindow = $("#chatWindow");
+                  var $messageArea = $("#messageArea");
+                  var $userFormArea = $("#userFormArea");
+                  var $userForm = $("#userForm");
+                  var $users = $("#users");
+                  var $username = $("#username");
+
+                  // When the form is submitted, the request will be captured by the server side "socket.on 'send message'". Once the server processes the request, it will emit something called 'new message'. The data it will emit, is the value of the text area above, since it is referencing the 'send message value.. 
+                  // Finally, we have to catch this emitted message here on the clientside using the below function. Lastly, we clear the text area value.
+
+                  $messageForm.submit(function (e) {
+                        e.preventDefault();
+                        socket.emit("send message", $message.val());
+                        $message.val("");
+                  });
+
+                  // Allows user to simply press enter at the login screen instead of hitting the submit button.
+                  $('.input').keypress(function (e) {
+                        if (e.which == 13) {
+                              $('form#login').submit();
+                              return false;
+                        }
+                  });
+
+                  socket.on("new message", function (data) {
+                        $chat.append('<div class="chatMessage card card-body bg-light"><strong>' + data.user + ':</strong>' + data.msg + '</div>');
+                        updateScroll();
+                  })
+
+                  // When the user puts in their username, this form emits a new user method with the value input by the user. The server packages this input and runs a function that updates the username array. This current function continues on to say that if the server has pushed back the data it has processed, hide the login information and display the message area.
+                  $userForm.submit(function (e) {
+                        e.preventDefault();
+                        socket.emit("new user", $username.val(), function (data) {
+                              if (data) {
+                                    $userFormArea.hide();
+                                    $messageArea.css('display', 'flex');
+                              }
+                        });
+                        // Clear the value of username so that a new user has a blank login.
+                        $username.val("");
+                  });
+                  // When the function above that updates the usernames is run it emits a get users method with the users array attached to it. It is then caught by the function below. This listens for that emitted event and runs this function which loops through the array, and for each username, creates an html list item which it then pushes to the user area.
+                  socket.on("get users", function (data) {
+                        var html = "";
+                        for (i = 0; i < data.length; i++) {
+                              html += '<li class="list-group-item">' + data[i] + '</li>';
+                        }
+                        $users.html(html);
+                  })
+                  // Ensures that the scroll overflow is always kept at it's lowest point. This way, all new messages originate from a static point just above the message box.
+                  function updateScroll() {
+                        var scroll = document.getElementById("chatWindow");
+                        scroll.scrollTop = scroll.scrollHeight;
+                  }
+            });
+
+      </script>
+
+
+
+      <script     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"               
+                  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                  crossorigin="anonymous">
+
+      </script>
+
+      <script     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+                  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                  crossorigin="anonymous">
+
+      </script>
+
+</body>
+
+</html>
