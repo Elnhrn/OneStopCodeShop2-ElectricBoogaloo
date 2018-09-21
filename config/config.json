@@ -2,7 +2,11 @@
   "development": {
     "username": "root",
     "password": "root",
+<<<<<<< HEAD
     "database": "exampledb",
+=======
+    "database": "forum_db",
+>>>>>>> master
     "host": "localhost",
     "dialect": "mysql"
   },
