@@ -29,7 +29,7 @@ nav {
 
 /* splash page */
 
-.splash-img {
+.splash-img-opacity {
   opacity: 0.4;
   filter: alpha(opacity=40);
   position: absolute;
@@ -39,6 +39,7 @@ nav {
 .splash {
   position: relative;
   z-index: 1;
+  background-image: url("/images/splash2.jpg");
 }
 
 #overlay-text {
