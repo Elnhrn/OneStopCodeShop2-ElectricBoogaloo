@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        reply_topic: {
+        reply_post: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
@@ -29,7 +29,8 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
-     Replies.associate = function (models) {
+
+    Replies.associate = function (models) {
         Replies.belongsTo(models.Posts, {
             foreignKey: {
                 allowNull: false
@@ -42,5 +43,6 @@ module.exports = function (sequelize, DataTypes) {
             }
         });
     };
-     return Replies;
+
+    return Replies;
 };

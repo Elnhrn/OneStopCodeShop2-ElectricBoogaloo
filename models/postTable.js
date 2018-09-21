@@ -7,6 +7,13 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
+        post_body: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
         post_date: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -29,7 +36,8 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
-     Posts.associate = function (models) {
+
+    Posts.associate = function (models) {
         Posts.hasMany(models.Replies, {
             foreignKey: {
                 allowNull: false
@@ -37,16 +45,19 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "cascade",
             onUpdate: "cascade"
         })
-     Posts.belongsTo(models.Users, {
+    };
+
+    Posts.belongsTo(models.Users, {
         foreignKey: {
             allowNull: false
         }
     });
-     Posts.belongsTo(models.Topics, {
+
+    Posts.belongsTo(models.Topics, {
         foreignKey: {
             allowNull: false
         }
     });
-};
+    
     return Posts;
 };
