@@ -75,31 +75,35 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/forum", function(req, res) {
+  app.get("/forum", function (req, res) {
     if (req.session.success) {
-      db.Topics.findAll({}).then(function(dbTopics) {
-        res.render("forum/index", {
-          msg: "Welcome to the forum!",
-          topics: dbTopics,
-          session: req.session.success
+      db.Topics.findAll({}).then(function (dbTopics) {
+        db.Posts.findAll({}).then(function (dbPosts) {
+          res.render("forum/index", {
+            msg: "Welcome to the forum!",
+            topics: dbTopics,
+            posts: dbPosts,
+            session: req.session.success
+          });
+          // db.Posts.findAll({}).then(function(dbPosts) {
+          //   res.render("forum/index", {
+          //     posts: dbPosts
+          //   });
         });
       });
-      // db.Posts.findAll({}).then(function(dbPosts) {
-      //   res.render("forum/index", {
-      //     posts: dbPosts
-      //   });
-      // });
     } else {
       res.redirect("/login");
     }
     req.session.errors = null;
   });
 
-  // app.get("/forum", function(req, res) {
+  // app.put("/forum", function (req, res) {
   //   if (req.session.success) {
-  //     db.Posts.findAll({}).then(function(dbPosts) {
-  //       res.render("/forum/index", {
-  //         posts: dbPosts
+  //     db.Posts.findAll({}).then(function (dbPosts) {
+  //       res.render("forum/index", {
+  //         msg: "Welcome to the forum!",
+  //         posts: dbPosts,
+  //         session: req.session.success
   //       });
   //     });
   //   } else {
@@ -108,9 +112,9 @@ module.exports = function (app) {
   //   req.session.errors = null;
   // });
 
-  app.get("/account", function(req, res) {
+  app.get("/account", function (req, res) {
     if (req.session.success) {
-      db.Users.findOne({}).then(function(dbUsers) {
+      db.Users.findOne({}).then(function (dbUsers) {
         res.render("myAccount/index", {
           users: dbUsers,
           success: req.session.success
@@ -121,9 +125,9 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/topics", function(req, res) {
+  app.get("/topics", function (req, res) {
     if (req.session.success) {
-      db.Topics.findAll({}).then(function(dbTopics) {
+      db.Topics.findAll({}).then(function (dbTopics) {
         res.render("topics/index", {
           topics: dbTopics,
           success: req.session.success
@@ -134,9 +138,9 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/author", function(req, res) {
+  app.get("/author", function (req, res) {
     if (req.session.success) {
-      db.Posts.findAll({}).then(function(dbPosts) {
+      db.Posts.findAll({}).then(function (dbPosts) {
         res.render("author/index", {
           author: dbPosts,
           success: req.session.success
@@ -147,9 +151,9 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/posts", function(req, res) {
+  app.get("/posts", function (req, res) {
     if (req.session.success) {
-      db.Posts.findAll({}).then(function(dbPosts) {
+      db.Posts.findAll({}).then(function (dbPosts) {
         res.render("posts/index", {
           posts: dbPosts,
           success: req.session.success
@@ -160,7 +164,7 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/add-a-post", function(req, res) {
+  app.get("/add-a-post", function (req, res) {
     if (req.session.success) {
       // db.Posts.create({}).then(function(dbPosts) {
       res.render("createPost/index", {
