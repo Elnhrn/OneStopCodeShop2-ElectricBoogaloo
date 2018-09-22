@@ -14,6 +14,14 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
+        post_rating: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                len: [1]
+            },
+            defaultValue: 0
+        },
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
