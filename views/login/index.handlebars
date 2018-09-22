@@ -1,11 +1,40 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          {{msg}}
-            <a href="/">← Back To Home</a>
-        </div>
+    <div class="col m6 offset-m3 login-body">
+
+      <div class="main-title">LOG IN
+        <div class="line"></div>
+      </div>
+
+      <div class="login-form">
+
+        {{!-- {{#unless else}} --}}
+        {{#if errors }}
+        <section class="errors">
+          <ul>
+            {{#each errors }}
+            <li>{{ this.msg }}</li>
+            {{/each}}
+          </ul>
+        </section>
+        {{/if}}
+        <form action="/login" method="post">
+          <div class="input input-field col s12">
+            <label for="email">E-Mail</label>
+            <input type="text" id="email" name="username">
+          </div>
+          <div class="input input-field col s12">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+          </div>
+          <button class="btn waves-effect waves-light" type="submit" id="login" name="action">LOG IN
+            <i class="material-icons right">chevron_right</i>
+          </button>
+          <p><a href="#">Forgot Password</a></p>
+          <p>Don't have an account? <a href="/createAccount">Sign up here!</a></p>
+        </form>
+        {{!-- {{/unless}} --}}
+
       </div>
     </div>
   </div>
