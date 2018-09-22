@@ -12,7 +12,7 @@ module.exports = function(app) {
     }
     req.session.errors = null;
   });
-  
+
   // Load example page and pass in an example by id
   // LOGIN ROUTES
   app.get("/login", function(req, res) {
@@ -87,6 +87,7 @@ module.exports = function(app) {
     });
   });
 
+  //will probably change to findOne and then get the functionality for it linked to the page?
   app.get("/author", function(req, res) {
     db.Posts.findAll({}).then(function(dbPosts) {
       res.render("author/index", {
