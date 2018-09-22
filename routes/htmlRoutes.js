@@ -77,7 +77,8 @@ module.exports = function(app) {
   app.get("/forum", function(req, res) {
     if (req.session.success) {
       res.render("forum/index", {
-        msg: "Welcome to the forum!"
+        msg: "Welcome to the forum!",
+        session: req.session.success
       });
     } else {
       res.redirect("/login");
@@ -89,7 +90,8 @@ module.exports = function(app) {
     if (req.session.success) {
       db.Users.findOne({}).then(function(dbUsers) {
         res.render("myAccount/index", {
-          users: dbUsers
+          users: dbUsers,
+          session: req.session.success
         });
       });
     } else {
@@ -101,7 +103,8 @@ module.exports = function(app) {
     if (req.session.success) {
       db.Topics.findAll({}).then(function(dbTopics) {
         res.render("topics/index", {
-          topics: dbTopics
+          topics: dbTopics,
+          session: req.session.success
         });
       });
     } else {
@@ -113,7 +116,8 @@ module.exports = function(app) {
     if (req.session.success) {
       db.Posts.findAll({}).then(function(dbPosts) {
         res.render("author/index", {
-          author: dbPosts
+          author: dbPosts,
+          session: req.session.success
         });
       });
     } else {
@@ -125,7 +129,8 @@ module.exports = function(app) {
     if (req.session.success) {
       db.Posts.findAll({}).then(function(dbPosts) {
         res.render("posts/index", {
-          posts: dbPosts
+          posts: dbPosts,
+          session: req.session.success
         });
       });
     } else {
@@ -134,11 +139,15 @@ module.exports = function(app) {
   });
 
   app.get("/add-a-post", function(req, res) {
-    // db.Posts.create({}).then(function(dbPosts) {
-    res.render("createPost/index", {
-      //     newPost: dbPosts
-      //   });
-    });
+    if (req.session.success) {
+      // db.Posts.create({}).then(function(dbPosts) {
+      res.render("createPost/index", {
+        //     newPost: dbPosts
+        //   });
+      });
+    } else {
+      res.redirect("/login");
+    }
   });
 
   app.get("/logout", function(req, res) {
