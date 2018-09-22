@@ -83,6 +83,11 @@ module.exports = function (app) {
           session: req.session.success
         });
       });
+      db.Posts.findAll({}).then(function(dbPosts) {
+        res.render("forum/index/sidebar", {
+          posts: dbPosts
+        });
+      });
     } else {
       res.redirect("/login");
     }
