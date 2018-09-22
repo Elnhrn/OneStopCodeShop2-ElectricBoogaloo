@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col m8 offset-m2 register-body">
+
+            <div class="main-title">SIGN UP
+                <div class="line"></div>
+            </div>
+
+            <div class="register-form">
+
+                {{#if success }}
+                <section class="success">
+                    <h2>Successful Validation!</h2>
+                </section>
+                {{ else }}
+                {{#if errors }}
+                <section class="errors">
+                    <ul>
+                        {{#each errors }}
+                        <li>{{ this.msg }}</li>
+                        {{/each}}
+                    </ul>
+                </section>
+                {{/if}}
+                <form action="/register" method="post">
+                    <div class="input input-field col s6">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" class="validate">
+                    </div>
+                    <div class="input input-field col s6">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" class="validate">
+                    </div>
+                    <div class="input input-field col s12">
+                        <label for="email">Username *</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+                    <div class="input input-field col s12">
+                        <label for="password">Password *</label>
+                        <input type="password" id="password" name="password">
+                    </div>
+                    <div class="input input-field col s12">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword">
+                    </div>
+                    <div><label>* Required</label></div>
+                    <button class="btn waves-effect waves-light" type="submit" id="login" name="action">CREATE ACCOUNT
+                        <i class="material-icons right">chevron_right</i>
+                    </button>
+                </form>
+                <p><a href="/login">Already have an account?</a></p>
+                {{/if}}
+
+            </div>
+        </div>
+    </div>
+</div>
