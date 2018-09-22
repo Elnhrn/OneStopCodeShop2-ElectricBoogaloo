@@ -20,9 +20,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   expressSession({
+    key: "user_sid",
     secret: "JRS",
     saveUninitialized: false,
-    resave: false
+    resave: false,
+    cookie: {
+      expires: 600000
+    }
   })
 );
 
