@@ -3,16 +3,11 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    if (req.session.success) {
-      res.render("index", {
-        msg: "Welcome to the electric boogaloo!"
-      });
-    } else {
-      res.redirect("/login");
-    }
-    req.session.errors = null;
+    res.render("index", {
+      msg: "Welcome to the electric boogaloo!"
+    });
   });
-  
+
   // Load example page and pass in an example by id
   // LOGIN ROUTES
   app.get("/login", function(req, res) {
@@ -25,30 +20,38 @@ module.exports = function(app) {
   });
 
   app.post("/login", function(req, res) {
-    req.check("email", "Invalid email address").isEmail();
-    req
-      .check("password", "Password is invalid")
-      .isLength({
-        min: 4
-      })
-      .equals(req.body.confirmPassword);
-    var errors = req.validationErrors();
-    if (errors) {
-      req.session.errors = errors;
-      req.session.success = false;
-    } else {
-      req.session.success = true;
-      res.redirect("/");
-    }
+    db.Users.findOne({
+      where: {
+        user_name: req.body.username
+      }
+    }).then(function(user) {
+      req
+        .check("password", "Password is invalid")
+        .isLength({
+          min: 4
+        })
+        .equals(user.user_pass);
+      var errors = req.validationErrors();
+      if (errors) {
+        req.session.errors = errors;
+        req.session.success = false;
+      } else {
+        req.session.success = true;
+        res.redirect("/forum");
+      }
+    });
   });
 
   // CREATE ACCOUNT ROUTES
-  app.get("/createAccount", function(req, res) {
-    res.render("createAccount");
+  app.get("/register", function(req, res) {
+    res.render("register/index", {
+      title: "Form Validation",
+      success: req.session.success,
+      errors: req.session.errors
+    });
   });
 
-  app.post("/submit", function(req, res) {
-    req.check("email", "Invalid email address").isEmail();
+  app.post("/register", function(req, res) {
     req
       .check("password", "Password is invalid")
       .isLength({
@@ -60,15 +63,26 @@ module.exports = function(app) {
       req.session.errors = errors;
       req.session.success = false;
     } else {
-      req.session.success = true;
+      db.Users.create({
+        user_name: req.body.username,
+        user_pass: req.body.password,
+        user_level: 0
+      }).then(function() {
+        req.session.success = true;
+        res.redirect("/forum");
+      });
     }
-    res.redirect("/");
   });
-    
+
   app.get("/forum", function(req, res) {
-    res.render("forum/index", {
-      msg: "Welcome to the forum!"
-    });
+    if (req.session.success) {
+      res.render("forum/index", {
+        msg: "Welcome to the forum!"
+      });
+    } else {
+      res.redirect("/login");
+    }
+    req.session.errors = null;
   });
 
   app.get("/account", function(req, res) {
@@ -103,16 +117,16 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/add-a-post", function(req, res) {
-    db.Posts.create({}).then(function(dbPosts) {
-      res.render("createPost/index", {
-        newPost: dbPosts
-      });
+  app.get("/add-a-post", function(req, res) {
+    // db.Posts.create({}).then(function(dbPosts) {
+    res.render("createPost/index", {
+      //     newPost: dbPosts
+      //   });
     });
   });
 
   app.get("/logout", function(req, res) {
     req.session.destroy();
-    res.redirect("/login");
+    res.redirect("/");
   });
 };
