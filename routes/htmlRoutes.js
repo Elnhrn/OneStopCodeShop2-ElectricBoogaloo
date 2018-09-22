@@ -79,7 +79,8 @@ module.exports = function (app) {
       db.Topics.findAll({}).then(function(dbTopics) {
         res.render("forum/index", {
           msg: "Welcome to the forum!",
-          topics: dbTopics
+          topics: dbTopics,
+          session: req.session.success
         });
       });
     } else {
@@ -88,44 +89,68 @@ module.exports = function (app) {
     req.session.errors = null;
   });
 
-  app.get("/account", function (req, res) {
-    db.Users.findOne({}).then(function (dbUsers) {
-      res.render("myAccount/index", {
-        users: dbUsers
+  app.get("/account", function(req, res) {
+    if (req.session.success) {
+      db.Users.findOne({}).then(function(dbUsers) {
+        res.render("myAccount/index", {
+          users: dbUsers,
+          session: req.session.success
+        });
       });
-    });
+    } else {
+      res.redirect("/login");
+    }
   });
 
-  app.get("/topics", function (req, res) {
-    db.Topics.findAll({}).then(function (dbTopics) {
-      res.render("topics/index", {
-        topics: dbTopics
+  app.get("/topics", function(req, res) {
+    if (req.session.success) {
+      db.Topics.findAll({}).then(function(dbTopics) {
+        res.render("topics/index", {
+          topics: dbTopics,
+          session: req.session.success
+        });
       });
-    });
+    } else {
+      res.redirect("/login");
+    }
   });
 
-  //will probably change to findOne and then get the functionality for it linked to the page?
-  app.get("/author", function (req, res) {
-    db.Posts.findAll({}).then(function (dbPosts) {
-      res.render("author/index", {
-        author: dbPosts
+  app.get("/author", function(req, res) {
+    if (req.session.success) {
+      db.Posts.findAll({}).then(function(dbPosts) {
+        res.render("author/index", {
+          author: dbPosts,
+          session: req.session.success
+        });
       });
-    });
+    } else {
+      res.redirect("/login");
+    }
   });
 
-  app.get("/posts", function (req, res) {
-    db.Posts.findAll({}).then(function (dbPosts) {
-      res.render("posts/index", {
-        posts: dbPosts
+  app.get("/posts", function(req, res) {
+    if (req.session.success) {
+      db.Posts.findAll({}).then(function(dbPosts) {
+        res.render("posts/index", {
+          posts: dbPosts,
+          session: req.session.success
+        });
       });
-    });
+    } else {
+      res.redirect("/login");
+    }
   });
 
-  app.post("/add-a-post", function (req, res) {
-    // db.Posts.create({}).then(function(dbPosts) {
-    res.render("createPost/index", {
-      // newPost: dbPosts
-    });
+  app.get("/add-a-post", function(req, res) {
+    if (req.session.success) {
+      // db.Posts.create({}).then(function(dbPosts) {
+      res.render("createPost/index", {
+        //     newPost: dbPosts
+        //   });
+      });
+    } else {
+      res.redirect("/login");
+    }
   });
   // });
 
