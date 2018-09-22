@@ -7,6 +7,20 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
+        user_firstName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        user_lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
         user_pass: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -33,6 +47,13 @@ module.exports = function (sequelize, DataTypes) {
 
 
     Users.associate = function (models) {
+        Users.hasMany(models.Topics, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: "restrict",
+            onUpdate: "cascade"
+        });
         Users.hasMany(models.Posts, {
             foreignKey: {
                 allowNull: false
