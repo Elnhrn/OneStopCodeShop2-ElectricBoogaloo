@@ -20,7 +20,11 @@
 
 <body>
 
-  {{> nav}}
+  {{#if success}}
+    {{> accountNav}}
+  {{else}}
+    {{> nav}}
+  {{/if}}
 
   {{{body}}}
 
