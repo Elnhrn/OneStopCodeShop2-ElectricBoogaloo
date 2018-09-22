@@ -13,13 +13,17 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         }
-        // },
-        // createdAt: {
-        //     type: DataTypes.TIMESTAMP,
-        //     allowNull: false,
-        //     DEFAULT: CURRENT_TIMESTAMP
-        // }
     });
 
     Topics.associate = function (models) {

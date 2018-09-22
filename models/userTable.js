@@ -17,18 +17,22 @@ module.exports = function (sequelize, DataTypes) {
         user_level: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            DEFAULT: 0
+            defaultValue: 0
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         }
-        // },
-        // createdAt: {
-        //     type: DataTypes.TIMESTAMP,
-        //     allowNull: false,
-        //     DEFAULT: CURRENT_TIMESTAMP
-        // }
     });
 
 
-    Users.associate = function(models) {
+    Users.associate = function (models) {
         Users.hasMany(models.Posts, {
             foreignKey: {
                 allowNull: false
