@@ -6,10 +6,10 @@
           <h5 class="card-title">Example</h5>
           {{#each posts}}
           <p>
-            <strong>ID</strong>: {{posts.post_subject}}</p>
+            <strong>ID</strong>: {{this.post_subject}}</p>
           <p>
           <p>
-            <strong>Text</strong>: {{posts.post_body}}</p>
+            <strong>Text</strong>: {{this.post_body}}</p>
           <p>
             {{/each}}
             <a href="/">← Back To Home</a>
