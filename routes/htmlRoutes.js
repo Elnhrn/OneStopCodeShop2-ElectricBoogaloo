@@ -86,35 +86,51 @@ module.exports = function(app) {
   });
 
   app.get("/account", function(req, res) {
-    db.Users.findOne({}).then(function(dbUsers) {
-      res.render("myAccount/index", {
-        users: dbUsers
+    if (req.session.success) {
+      db.Users.findOne({}).then(function(dbUsers) {
+        res.render("myAccount/index", {
+          users: dbUsers
+        });
       });
-    });
+    } else {
+      res.redirect("/login");
+    }
   });
 
   app.get("/topics", function(req, res) {
-    db.Topics.findAll({}).then(function(dbTopics) {
-      res.render("topics/index", {
-        topics: dbTopics
+    if (req.session.success) {
+      db.Topics.findAll({}).then(function(dbTopics) {
+        res.render("topics/index", {
+          topics: dbTopics
+        });
       });
-    });
+    } else {
+      res.redirect("/login");
+    }
   });
 
   app.get("/author", function(req, res) {
-    db.Posts.findAll({}).then(function(dbPosts) {
-      res.render("author/index", {
-        author: dbPosts
+    if (req.session.success) {
+      db.Posts.findAll({}).then(function(dbPosts) {
+        res.render("author/index", {
+          author: dbPosts
+        });
       });
-    });
+    } else {
+      res.redirect("/login");
+    }
   });
 
   app.get("/posts", function(req, res) {
-    db.Posts.findAll({}).then(function(dbPosts) {
-      res.render("posts/index", {
-        posts: dbPosts
+    if (req.session.success) {
+      db.Posts.findAll({}).then(function(dbPosts) {
+        res.render("posts/index", {
+          posts: dbPosts
+        });
       });
-    });
+    } else {
+      res.redirect("/login");
+    }
   });
 
   app.get("/add-a-post", function(req, res) {
