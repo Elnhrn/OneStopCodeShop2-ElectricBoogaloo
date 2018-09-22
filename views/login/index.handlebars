@@ -7,8 +7,6 @@
       </div>
 
       <div class="login-form">
-
-        {{!-- {{#unless else}} --}}
         {{#if errors }}
         <section class="errors">
           <ul>
@@ -20,8 +18,8 @@
         {{/if}}
         <form action="/login" method="post">
           <div class="input input-field col s12">
-            <label for="email">E-Mail</label>
-            <input type="text" id="email" name="username">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
           </div>
           <div class="input input-field col s12">
             <label for="password">Password</label>
@@ -31,11 +29,10 @@
             <i class="material-icons right">chevron_right</i>
           </button>
           <p><a href="#">Forgot Password</a></p>
-          <p>Don't have an account? <a href="/createAccount">Sign up here!</a></p>
+          <p>Don't have an account? <a href="/register">Sign up here!</a></p>
         </form>
-        {{!-- {{/unless}} --}}
-
       </div>
+      
     </div>
   </div>
 </div>
