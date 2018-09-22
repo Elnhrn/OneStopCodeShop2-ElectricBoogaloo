@@ -39,7 +39,7 @@
 </head>
 
 <body>
-      <div class="panel panel-primary">
+      <div class="panel panel-primary" id="chatPage">
 
             <div  class="panel-heading text-center" 
                   id="accordion" 
@@ -87,7 +87,14 @@
                                                 <h4 id="usersOnlineH4">USERS ONLINE:</h4>
                                                 <ul class="list-group" id="users">
                                                 </ul>
+                                                <button class="btn-small btn-success conBtns" id="disconnectButton">
+                                                      DISCONNECT
+                                                </button>
+                                                <button class="btn-small btn-success conBtns" id="connectButton">
+                                                      CONNECT
+                                                </button>
 
+                                                <h5 id="connectionStatus"></h5>
                                           </div>
                                     </div>
 
@@ -109,7 +116,8 @@
                                                       </textarea>
                                                       <br />
                                                       <input      type="submit" 
-                                                                  class="btn btn-primary" 
+                                                                  class="btn btn-primary"
+                                                                  id="messageButton" 
                                                                   value="send message">
                                                 </div>
                                           </form>
@@ -120,7 +128,7 @@
                   </div>
             </div>
       </div>
-      
+      <!--div style="background: green; width: 600px; height: 600px; margin: auto;">box</div-->
       <script>
 
             $(function () {
@@ -130,12 +138,14 @@
                   var $messageForm = $("#messageForm");
                   var $message = $("#message");
                   var $chat = $("#chat");
+                  var $disconnect = $("#disconnectButton")
                   var $chatWindow = $("#chatWindow");
                   var $messageArea = $("#messageArea");
                   var $userFormArea = $("#userFormArea");
                   var $userForm = $("#userForm");
                   var $users = $("#users");
                   var $username = $("#username");
+                  var $connect = $("#connectionStatus");
 
                   // When the form is submitted, the request will be captured by the server side "socket.on 'send message'". Once the server processes the request, it will emit something called 'new message'. The data it will emit, is the value of the text area above, since it is referencing the 'send message value.. 
                   // Finally, we have to catch this emitted message here on the clientside using the below function. Lastly, we clear the text area value.
@@ -145,13 +155,27 @@
                         socket.emit("send message", $message.val());
                         $message.val("");
                   });
-
+                  
                   // Allows user to simply press enter at the login screen instead of hitting the submit button.
-                  $('.input').keypress(function (e) {
+                  $('#message').keypress(function (e) {
+                        console.log(e.which);
                         if (e.which == 13) {
-                              $('form#login').submit();
+                              socket.emit("send message", $message.val());
+                              $message.val("");
                               return false;
                         }
+                  });
+                  
+
+                  $("#disconnectButton").click(function(){
+                        socket.disconnect();
+                        $connect.text("You are disconnected...")
+                        $('#chatPage').load(document.URL +  '#chatPage');
+                        // $("#chatPage").load(location.href + " #chatPage>*", "");
+                  });
+                  $("#connectButton").click(function(){
+                        socket.connect();
+                        $connect.text("You are connected...")
                   });
 
                   socket.on("new message", function (data) {
@@ -168,6 +192,7 @@
                                     $messageArea.css('display', 'flex');
                               }
                         });
+                        
                         // Clear the value of username so that a new user has a blank login.
                         $username.val("");
                   });
