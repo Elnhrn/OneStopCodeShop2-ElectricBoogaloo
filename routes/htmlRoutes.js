@@ -105,12 +105,12 @@ module.exports = function(app) {
   });
 
   app.post("/add-a-post", function(req, res) {
-    db.Posts.create({}).then(function(dbPosts) {
+    // db.Posts.create({}).then(function(dbPosts) {
       res.render("createPost/index", {
-        newPost: dbPosts
+        // newPost: dbPosts
       });
     });
-  });
+  // });
 
   app.get("/logout", function(req, res) {
     req.session.destroy();
