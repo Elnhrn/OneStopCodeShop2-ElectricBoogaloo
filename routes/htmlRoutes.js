@@ -46,6 +46,9 @@ module.exports = function(app) {
         req.session.success = true;
         res.redirect("/forum");
       }
+    }).catch(function(err) {
+      req.session.errors = err;
+      res.redirect("/login");
     });
   });
 
@@ -60,6 +63,7 @@ module.exports = function(app) {
   });
 
   app.post("/register", function(req, res) {
+    req.check("username")
     req
       .check("password", "Password is invalid")
       .isLength({
@@ -73,6 +77,8 @@ module.exports = function(app) {
       res.redirect("/register");
     } else {
       db.Users.create({
+        user_firstName: req.body.firstName,
+        user_lastName: req.body.lastName,
         user_name: req.body.username,
         user_pass: req.body.password,
         user_level: 0
