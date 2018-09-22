@@ -138,12 +138,18 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/author", function (req, res) {
+  app.get("/users/:id", function (req, res) {
     if (req.session.success) {
-      db.Posts.findAll({}).then(function (dbPosts) {
-        res.render("author/index", {
-          author: dbPosts,
-          success: req.session.success
+      db.Users.findOne({}).then(function (dbUsers) {
+        db.Posts.findAll({ where: { UserId: req.param.id } }).then(function (dbPosts) {
+          db.Replies.findAll({ where: { UserId: req.param.id } }).then(function (dbReplies) {
+            res.render("author/index", {
+              user: dbUsers,
+              userPosts: dbPosts,
+              userReplies: dbReplies,
+              success: req.session.success
+            });
+          });
         });
       });
     } else {

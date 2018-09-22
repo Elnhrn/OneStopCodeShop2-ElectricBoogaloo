@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="row main-title">USER // {{users.user_name}}
+  <div class="row main-title">USER // {{user.user_name}}
     <div class="line"></div>
   </div>
 
@@ -9,12 +9,16 @@
       <div class="body-title">POSTS</div>
       <!-- for each loop for hb for all user posts -->
       <ul class="user-posts">
-        <li>asdf</li>
+          {{#each userPosts}}
+        <li>{{this.post_subject}}</li>
+        {{/each}}
       </ul>
       <div class="body-title">COMMENTS</div>
       <!-- for each loop for hb for all user comments -->
       <ul class="user-posts">
-        <li>asdf</li>
+          {{#each userReplies}}
+        <li>{{this.reply_content}}</li>
+        {{/each}}
       </ul>
     </div>
 
@@ -24,15 +28,15 @@
           <tbody>
             <tr>
               <td class="acct-property">Username: </td>
-              <td>{{users.user_name}}</td>
+              <td>{{user.user_name}}</td>
             </tr>
             <tr>
               <td class="acct-property">First Name: </td>
-              <td>{{users.firstName}}</td>
+              <td>{{user.firstName}}</td>
             </tr>
             <tr>
               <td class="acct-property">Last Name: </td>
-              <td>{{users.lastName}}</td>
+              <td>{{user.lastName}}</td>
             </tr>
           </tbody>
         </table>
