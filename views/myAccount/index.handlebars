@@ -1,23 +1,41 @@
 <div class="container">
-  <div class="row">
-    <div class="col-8 offset-2">
-      
-      <div class="main-title">MY ACCOUNT
-        <div class="line"></div>
-      </div>
-      
-      
-      
-      
-      
-      <div class="card mt-4">
-        <div class="card-body">
-          <p>
-            <strong>Text</strong>: {{users.user_name}}</p>
-          <p>
-            <a href="/">← Back To Home</a>
-            <a href="/logout">Logout</a>
-        </div>
+
+  <div class="row main-title">MY ACCOUNT
+    <div class="line"></div>
+  </div>
+
+  <div class="row forum-body">
+    <div class="col m8 forum-col">
+      <div class="body-title">POSTS</div>
+      <!-- for each loop for hb for all user posts -->
+      <ul class="user-posts">
+        <li>asdf</li>
+      </ul>
+      <div class="body-title">COMMENTS</div>
+      <!-- for each loop for hb for all user comments -->
+      <ul class="user-posts">
+        <li>asdf</li>
+      </ul>
+    </div>
+
+    <div class="col m4">
+      <div class="register-form">
+        <table>
+          <tbody>
+            <tr>
+              <td class="acct-property">Username: </td>
+              <td>{{username}}</td>
+            </tr>
+            <tr>
+              <td class="acct-property">First Name: </td>
+              <td>{{users.firstName}}</td>
+            </tr>
+            <tr>
+              <td class="acct-property">Last Name: </td>
+              <td>{{users.lastName}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
