@@ -10,7 +10,6 @@
 }
 .card {
   margin: 30px;
-  
 }
 .chatWindow {
   border: solid 1px rgb(54, 54, 54);
@@ -24,10 +23,15 @@
   margin: auto;
 }
 
+#connectionStatus {
+  font-size: .9em;
+}
 #usersOnlineH4 {
   text-align: center;
   font-size: 1em;
- 
+}
+.conBtns {
+  margin: 10px 
 }
 #chatWindow
 {
