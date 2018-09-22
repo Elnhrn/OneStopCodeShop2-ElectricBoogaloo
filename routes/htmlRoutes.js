@@ -4,7 +4,8 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     res.render("index", {
-      msg: "Welcome to the electric boogaloo!"
+      msg: "Welcome to the electric boogaloo!",
+      success: req.session.success
     });
   });
 
@@ -78,7 +79,7 @@ module.exports = function(app) {
     if (req.session.success) {
       res.render("forum/index", {
         msg: "Welcome to the forum!",
-        session: req.session.success
+        success: req.session.success
       });
     } else {
       res.redirect("/login");
@@ -91,7 +92,7 @@ module.exports = function(app) {
       db.Users.findOne({}).then(function(dbUsers) {
         res.render("myAccount/index", {
           users: dbUsers,
-          session: req.session.success
+          success: req.session.success
         });
       });
     } else {
@@ -104,7 +105,7 @@ module.exports = function(app) {
       db.Topics.findAll({}).then(function(dbTopics) {
         res.render("topics/index", {
           topics: dbTopics,
-          session: req.session.success
+          success: req.session.success
         });
       });
     } else {
@@ -117,7 +118,7 @@ module.exports = function(app) {
       db.Posts.findAll({}).then(function(dbPosts) {
         res.render("author/index", {
           author: dbPosts,
-          session: req.session.success
+          success: req.session.success
         });
       });
     } else {
@@ -130,7 +131,7 @@ module.exports = function(app) {
       db.Posts.findAll({}).then(function(dbPosts) {
         res.render("posts/index", {
           posts: dbPosts,
-          session: req.session.success
+          success: req.session.success
         });
       });
     } else {
