@@ -1,12 +1,3 @@
-// 1. home page
-// 2. login/register
-// 3. my account
-// 4. by category/topic
-// 5. by author
-// 6. by post
-// 7. create post
-// 8. logout
-
 var db = require("../models");
 
 module.exports = function(app) {

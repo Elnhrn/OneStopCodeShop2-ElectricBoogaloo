@@ -14,28 +14,19 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        // createdAt: {
-        //     type: DataTypes.TIMESTAMP,
-        //     allowNull: false,
-        //     validate: {
-        //         len: [1]
-        //     },
-        //     // DEFAULT: CURRENT_TIMESTAMP
-        // },
-        post_topic: {
-            type: DataTypes.INTEGER,
+        createdAt: {
+            type: DataTypes.DATE,
             allowNull: false,
             validate: {
                 len: [1]
-            }
+            },
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         },
-        post_by: {
-            type: DataTypes.INTEGER,
+        updatedAt: {
+            type: DataTypes.DATE,
             allowNull: false,
-            validate: {
-                len: [1]
-            }
-        }
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        },
     });
 
     Posts.associate = function (models) {
@@ -47,17 +38,17 @@ module.exports = function (sequelize, DataTypes) {
             onUpdate: "cascade"
         });
 
-    Posts.belongsTo(models.Users, {
-        foreignKey: {
-            allowNull: false
-        }
-    });
+        Posts.belongsTo(models.Users, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
 
-    Posts.belongsTo(models.Topics, {
-        foreignKey: {
-            allowNull: false
-        }
-    });
-};
-return Posts;
+        Posts.belongsTo(models.Topics, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+    return Posts;
 }
