@@ -12,12 +12,17 @@ module.exports = function(app) {
   // Load example page and pass in an example by id
   // LOGIN ROUTES
   app.get("/login", function(req, res) {
-    res.render("login/index", {
-      msg: "Welcome back/Create new?",
-      title: "Form Validation",
-      success: req.session.success,
-      errors: req.session.errors
-    });
+    if (req.session.success) {
+      res.redirect("/account");
+    } else {
+      res.render("login/index", {
+        msg: "Welcome back/Create new?",
+        title: "Form Validation",
+        success: req.session.success,
+        errors: req.session.errors
+      });
+      req.session.errors = null;
+    }
   });
 
   app.post("/login", function(req, res) {
@@ -36,6 +41,7 @@ module.exports = function(app) {
       if (errors) {
         req.session.errors = errors;
         req.session.success = false;
+        res.redirect("/login");
       } else {
         req.session.success = true;
         res.redirect("/forum");
@@ -50,6 +56,7 @@ module.exports = function(app) {
       success: req.session.success,
       errors: req.session.errors
     });
+    req.session.errors = null;
   });
 
   app.post("/register", function(req, res) {
@@ -63,6 +70,7 @@ module.exports = function(app) {
     if (errors) {
       req.session.errors = errors;
       req.session.success = false;
+      res.redirect("/register");
     } else {
       db.Users.create({
         user_name: req.body.username,
@@ -84,7 +92,6 @@ module.exports = function(app) {
     } else {
       res.redirect("/login");
     }
-    req.session.errors = null;
   });
 
   app.get("/account", function(req, res) {
