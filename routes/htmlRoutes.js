@@ -1,8 +1,8 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Load index page
-  app.get("/", function(req, res) {
+  app.get("/", function (req, res) {
     res.render("index", {
       msg: "Welcome to the electric boogaloo!"
     });
@@ -10,7 +10,7 @@ module.exports = function(app) {
 
   // Load example page and pass in an example by id
   // LOGIN ROUTES
-  app.get("/login", function(req, res) {
+  app.get("/login", function (req, res) {
     res.render("login/index", {
       msg: "Welcome back/Create new?",
       title: "Form Validation",
@@ -19,12 +19,12 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/login", function(req, res) {
+  app.post("/login", function (req, res) {
     db.Users.findOne({
       where: {
         user_name: req.body.username
       }
-    }).then(function(user) {
+    }).then(function (user) {
       req
         .check("password", "Password is invalid")
         .isLength({
@@ -43,7 +43,7 @@ module.exports = function(app) {
   });
 
   // CREATE ACCOUNT ROUTES
-  app.get("/register", function(req, res) {
+  app.get("/register", function (req, res) {
     res.render("register/index", {
       title: "Form Validation",
       success: req.session.success,
@@ -51,7 +51,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/register", function(req, res) {
+  app.post("/register", function (req, res) {
     req
       .check("password", "Password is invalid")
       .isLength({
@@ -67,7 +67,7 @@ module.exports = function(app) {
         user_name: req.body.username,
         user_pass: req.body.password,
         user_level: 0
-      }).then(function() {
+      }).then(function () {
         req.session.success = true;
         res.redirect("/forum");
       });
@@ -76,8 +76,11 @@ module.exports = function(app) {
 
   app.get("/forum", function(req, res) {
     if (req.session.success) {
-      res.render("forum/index", {
-        msg: "Welcome to the forum!"
+      db.Topics.findAll({}).then(function(dbTopics) {
+        res.render("forum/index", {
+          msg: "Welcome to the forum!",
+          topics: dbTopics
+        });
       });
     } else {
       res.redirect("/login");
@@ -85,16 +88,16 @@ module.exports = function(app) {
     req.session.errors = null;
   });
 
-  app.get("/account", function(req, res) {
-    db.Users.findOne({}).then(function(dbUsers) {
+  app.get("/account", function (req, res) {
+    db.Users.findOne({}).then(function (dbUsers) {
       res.render("myAccount/index", {
         users: dbUsers
       });
     });
   });
 
-  app.get("/topics", function(req, res) {
-    db.Topics.findAll({}).then(function(dbTopics) {
+  app.get("/topics", function (req, res) {
+    db.Topics.findAll({}).then(function (dbTopics) {
       res.render("topics/index", {
         topics: dbTopics
       });
@@ -102,23 +105,23 @@ module.exports = function(app) {
   });
 
   //will probably change to findOne and then get the functionality for it linked to the page?
-  app.get("/author", function(req, res) {
-    db.Posts.findAll({}).then(function(dbPosts) {
+  app.get("/author", function (req, res) {
+    db.Posts.findAll({}).then(function (dbPosts) {
       res.render("author/index", {
         author: dbPosts
       });
     });
   });
 
-  app.get("/posts", function(req, res) {
-    db.Posts.findAll({}).then(function(dbPosts) {
+  app.get("/posts", function (req, res) {
+    db.Posts.findAll({}).then(function (dbPosts) {
       res.render("posts/index", {
         posts: dbPosts
       });
     });
   });
 
-  app.post("/add-a-post", function(req, res) {
+  app.post("/add-a-post", function (req, res) {
     // db.Posts.create({}).then(function(dbPosts) {
     res.render("createPost/index", {
       // newPost: dbPosts
@@ -126,7 +129,7 @@ module.exports = function(app) {
   });
   // });
 
-  app.get("/logout", function(req, res) {
+  app.get("/logout", function (req, res) {
     req.session.destroy();
     res.redirect("/");
   });
