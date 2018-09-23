@@ -5,12 +5,10 @@
         <div class="card-body">
           <h5 class="card-title">Example</h5>
           {{#each posts}}
-          <p>
-            <strong>ID</strong>: {{this.post_subject}}</p>
-          <p>
-          <p>
-            <strong>Text</strong>: {{this.post_body}}</p>
-          <p>
+          <div>
+          <p>{{this.post_subject}}</p>
+          <p>{{this.post_body}}</p>
+          </div>
             {{/each}}
             <a href="/">← Back To Home</a>
         </div>
