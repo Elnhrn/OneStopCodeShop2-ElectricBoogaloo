@@ -85,10 +85,6 @@ module.exports = function (app) {
             posts: dbPosts,
             session: req.session.success
           });
-          // db.Posts.findAll({}).then(function(dbPosts) {
-          //   res.render("forum/index", {
-          //     posts: dbPosts
-          //   });
         });
       });
     } else {
@@ -96,21 +92,6 @@ module.exports = function (app) {
     }
     req.session.errors = null;
   });
-
-  // app.put("/forum", function (req, res) {
-  //   if (req.session.success) {
-  //     db.Posts.findAll({}).then(function (dbPosts) {
-  //       res.render("forum/index", {
-  //         msg: "Welcome to the forum!",
-  //         posts: dbPosts,
-  //         session: req.session.success
-  //       });
-  //     });
-  //   } else {
-  //     res.redirect("/login");
-  //   }
-  //   req.session.errors = null;
-  // });
 
   app.get("/account", function (req, res) {
     if (req.session.success) {
@@ -125,6 +106,7 @@ module.exports = function (app) {
     }
   });
 
+  // do we need this?
   app.get("/topics", function (req, res) {
     if (req.session.success) {
       db.Topics.findAll({}).then(function (dbTopics) {
@@ -140,9 +122,9 @@ module.exports = function (app) {
 
   app.get("/users/:id", function (req, res) {
     if (req.session.success) {
-      db.Users.findOne({}).then(function (dbUsers) {
-        db.Posts.findAll({ where: { UserId: req.param.id } }).then(function (dbPosts) {
-          db.Replies.findAll({ where: { UserId: req.param.id } }).then(function (dbReplies) {
+      db.Users.findOne({ where: { id: req.params.id } }).then(function(dbUsers) {
+        db.Posts.findAll({ where: { UserId: req.params.id } }).then(function(dbPosts) {
+          db.Replies.findAll({ where: { UserId: req.params.id } }).then(function(dbReplies) {
             res.render("author/index", {
               user: dbUsers,
               userPosts: dbPosts,
