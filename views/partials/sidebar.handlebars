@@ -11,13 +11,20 @@
         </form>
     </div>
 
+    <!-- create new post -->
+    <div class="create-post">
+        <a class="waves-effect waves-light btn create-btn">CREATE POST</a>
+    </div>
+
+
     <!-- top posts -->
     <div class="top-posts">
         <div class="title">POPULAR POSTS</div>
         <!-- for each hb loop with top posts object -->
         <ul>
-            <li>popular posts here</li>
-            <li>another top post</li>
+            {{#each posts}}
+            <li>{{this.post_subject}}</li>
+            {{/each}}
         </ul>
     </div>
 

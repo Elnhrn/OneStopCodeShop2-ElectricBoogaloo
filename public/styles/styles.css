@@ -54,6 +54,10 @@ nav {
 
 /* forum page */
 
+.forum-col {
+  padding-right: 1.5rem !important;
+}
+
 .main-title {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 30px;
@@ -69,7 +73,7 @@ nav {
   margin: 8px auto;
 }
 
-th {
+th, .acct-property, .body-title {
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: normal;
   font-size: 16px;
@@ -88,11 +92,12 @@ tr {
 }
 
 .tcol2 {
-  width: 15%;
+  width: 17%;
+  text-align: center;
 }
 
 .tcol3 {
-  width: 30%;
+  width: 28%;
 }
 
 .fresh td {
@@ -103,6 +108,14 @@ tr {
 
 .searchbar {
   border: 1px solid #cccccc;
+}
+
+.searchbar i {
+  padding-left: 7px;
+}
+
+.input-field input[type=search] {
+  padding-left: 2.5rem !important;
 }
 
 .title {
@@ -119,6 +132,16 @@ tr {
 
 .top-posts li {
   padding: 8px 0;
+}
+
+.create-post {
+  margin: 30px 0 0;
+}
+
+.create-btn {
+  width: 100%;
+  font-weight: bold;
+  letter-spacing: 1.5px;
 }
 
 /* footer */
@@ -138,6 +161,7 @@ tr {
 .login-form, .register-form {
   padding: 10px 30px;
   border: 1px solid rgba(0, 0, 0, 0.12);
+  margin: 20px 0;
 }
 
 #login {
@@ -151,4 +175,27 @@ a:link {
 .input, label {
   padding: 0 0 !important;
   left: 0 !important;
+}
+
+.acct-property {
+  width: 90px;
+}
+
+.errors {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
+
+.body-title {
+  padding: 15px 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.user-posts > li {
+  padding: 0 5px;
+}
+
+.user-posts {
+  margin-bottom: 20px;
 }

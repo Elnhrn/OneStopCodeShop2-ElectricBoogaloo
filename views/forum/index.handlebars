@@ -6,9 +6,9 @@
     </div>
 
 
-    <div class="row forum-body">
+    <div class="row">
         <!-- post body -->
-        <div class="col m9">
+        <div class="col m9 forum-col">
             <table>
                 <!-- forum headers -->
                 <tr class="th">
@@ -18,22 +18,22 @@
                 </tr>
                 <!-- forum data -->
                 <!-- for each loop through categories-->
+                {{#each topics}}
                 <tr>
-                    <td>a title</td>
+                    <td>{{this.topic_name}}</td>
                     <td>0</td>
-                    <td>MMMM DD YYYY</td>
+                    <td>{{this.createdAt}}</td>
                 </tr>
-                <tr>
-                    <td>a title</td>
-                    <td>234</td>
-                    <td>MMMM DD YYYY</td>
-                </tr>
+                {{/each}}
             </table>
         </div>
 
         <!-- sidebar -->
         <div class="col m3">
-            {{> sidebar}}
+        {{> sidebar}}
+    </div>
+
+</div>
         </div>
     </div>
 </div>

@@ -1,19 +1,45 @@
 <div class="container">
+
+  <div class="row main-title">USER // {{user.user_name}}
+    <div class="line"></div>
+  </div>
+
   <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Example</h5>
-          <p>
-              {{!-- probably need to change the middle of the handlebars --}}
-            <strong>ID</strong>: {{author.userID}}</p>
-          <p>
-          <p>
-            <strong>Text</strong>: {{example.text}}</p>
-          <p>
-            <strong>Description:</strong> {{example.description}}</p>
-            <a href="/">← Back To Home</a>
-        </div>
+    <div class="col m8 forum-col">
+      <div class="body-title">POSTS</div>
+      <!-- for each loop for hb for all user posts -->
+      <ul class="user-posts">
+          {{#each userPosts}}
+        <li>{{this.post_subject}}</li>
+        {{/each}}
+      </ul>
+      <div class="body-title">COMMENTS</div>
+      <!-- for each loop for hb for all user comments -->
+      <ul class="user-posts">
+          {{#each userReplies}}
+        <li>{{this.reply_content}}</li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="col m4">
+      <div class="register-form">
+        <table>
+          <tbody>
+            <tr>
+              <td class="acct-property">Username: </td>
+              <td>{{user.user_name}}</td>
+            </tr>
+            <tr>
+              <td class="acct-property">First Name: </td>
+              <td>{{user.user_firstName}}</td>
+            </tr>
+            <tr>
+              <td class="acct-property">Last Name: </td>
+              <td>{{user.user_lastName}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
