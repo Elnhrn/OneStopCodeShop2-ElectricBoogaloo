@@ -1,12 +1,13 @@
-.container {
+.containerAll {
   margin-top: 30px;
-}
-.chatContainer {
-  
 }
 
 #messageArea {
   display: none;
+}
+.chatDiv {
+  z-index: 9999;
+
 }
 .card {
   margin: 30px;

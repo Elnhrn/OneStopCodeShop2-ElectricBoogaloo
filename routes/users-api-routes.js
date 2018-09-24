@@ -2,7 +2,6 @@ var db = require("../models");
 
 // if these dont work, need to switch to userTable possibly
 module.exports = function(app) {
-
   app.get("/api/users", function(req, res) {
     db.Users.findAll({
       include: [db.Posts, dp.Replies]

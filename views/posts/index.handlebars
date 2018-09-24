@@ -4,10 +4,12 @@
       <div class="card mt-4">
         <div class="card-body">
           <h5 class="card-title">Example</h5>
-          {{#each posts}}
+          {{#each posts2}}
           <div>
+              <a href="/posts/{{this.id}}"> 
           <p>{{this.post_subject}}</p>
           <p>{{this.post_body}}</p>
+          </a>
           </div>
             {{/each}}
             <a href="/">← Back To Home</a>

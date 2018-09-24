@@ -3,15 +3,16 @@
         <div class="col-8 offset-2">
             <div class="card mt-4">
                 <div class="card-body">
-                    <h5 class="card-title">Example</h5>
-                    {{#each topics}}
+                    <h5 class="card-title">Topics</h5>
                     <div>
-                        <p>
-                            <strong>Title</strong>: {{this.topic_name}}</p>
-                        <p>
-                            <p>
-                                <strong>Text</strong>: {{this.topic_description}}</p>
-                            <p>
+                        <p>{{topics.topic_name}}</p>
+                        <p>{{topics.topic_description}}</p>
+                    </div>
+                    {{#each posts2}}
+                    <div>
+                        <a href="/posts/{{this.id}}">
+                        <p><strong>Post Name</strong>: {{this.post_subject}}</p>
+                        </a>
                     </div>
                     {{/each}}
                     <a href="/">← Back To Home</a>
