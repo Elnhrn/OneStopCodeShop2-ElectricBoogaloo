@@ -11,4 +11,3 @@ VALUES ('make look nice', 'What CSS framework should I use to make my page look 
 
 INSERT INTO replies (reply_content, reply_rating, PostId, UserId, createdAt, updatedAt)
 VALUES ('Me too!', -100, 5, 2, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('Me too!', 100, 5, 3, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('Me too!', 200, 5, 4, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('Me too!', 300, 5, 5, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('Obviously materialize', 5, 1, 1, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('delete system32', -7500, 2, 4, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('git clone his repo', 8000, 3, 2, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('cry in a corner, then give it to me', 1500, 4, 4, '2018/09/20 00:00:00', '2018/09/20 00:00:00');
-
