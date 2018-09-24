@@ -44,6 +44,8 @@ module.exports = function (app) {
         res.redirect("/login");
       } else {
         req.session.username = user.user_name;
+        req.session.firstName = user.user_firstName;
+        req.session.lastName = user.user_lastName;
         req.session.success = true;
         res.redirect("/forum");
       }
@@ -131,7 +133,9 @@ module.exports = function (app) {
         res.render("myAccount/index", {
           users: dbUsers,
           success: req.session.success,
-          username: req.session.username
+          username: req.session.username,
+          firstName: req.session.firstName,
+          lastName: req.session.lastName
         });
       });
     } else {
