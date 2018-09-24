@@ -14,6 +14,11 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
+        topic_number: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -27,6 +32,12 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Topics.associate = function (models) {
+        Topics.belongsTo(models.Users, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+
         Topics.hasMany(models.Posts, {
             foreignKey: {
                 allowNull: false
