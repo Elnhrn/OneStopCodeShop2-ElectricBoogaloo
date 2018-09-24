@@ -10,7 +10,10 @@ var expressSession = require("express-session");
 var db = require("./models");
 
 var app = express();
-var PORT = process.env.PORT || 3000;
+server = require("http").createServer(app);
+var io = require("socket.io").listen(server);
+var PORT = 8080;
+server.listen(3000);
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -67,3 +70,37 @@ db.sequelize.sync(syncOptions).then(function() {
 });
 
 module.exports = app;
+
+// CHAT APPLICATION CODE
+
+users = [];
+connections = [];
+
+io.sockets.on("connection", function(socket) {
+  connections.push(socket);
+  console.log("Connected: %s sockets connect", connections.length);
+
+  socket.on("disconnect", function(data) {
+    console.log(data);
+    users.splice(users.indexOf(socket.username), 1);
+    updateUsernames();
+    connections.splice(connections.indexOf(socket), 1);
+    console.log("Disconnected: %s sockets connected", connections.length);
+  });
+
+  socket.on("send message", function(data) {
+    io.sockets.emit("new message", { msg: data, user: socket.username });
+    console.log(data);
+  });
+
+  socket.on("new user", function(data, cb) {
+    cb(true);
+    socket.username = data;
+    users.push(socket.username);
+    updateUsernames();
+  });
+
+  function updateUsernames() {
+    io.sockets.emit("get users", users);
+  }
+});

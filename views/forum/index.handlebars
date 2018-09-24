@@ -20,9 +20,9 @@
                 <!-- for each loop through categories-->
                 {{#each topics}}
                 <tr>
-                    <td>{{this.topic_name}}</td>
-                    <td>0</td>
-                    <td>{{this.createdAt}}</td>
+                    <td><a href="/topics/{{this.id}}">{{this.topic_name}}</a></td>
+                    <td class="tcol2">0</td>
+                    <td>{{this.updatedAt}}</td>
                 </tr>
                 {{/each}}
             </table>

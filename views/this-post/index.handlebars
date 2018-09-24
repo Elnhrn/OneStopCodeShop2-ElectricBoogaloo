@@ -1,0 +1,23 @@
+<div>
+<div>
+    <p>title: {{posts2.post_subject}}</p>
+    <p>rating: {{posts2.post_rating}}</p>
+    <p>{{posts2.post_body}}</p>
+    <hr>
+
+</div>
+
+<div>
+    <ul>
+        <hr>
+    {{#each replies}}
+        <li>
+            <p>{{this.reply_content}}</p>
+            <p>{{this.reply_rating}}</p>
+        </li>
+        <hr>
+    {{/each}}
+    </ul>
+</div>
+
+</div>
