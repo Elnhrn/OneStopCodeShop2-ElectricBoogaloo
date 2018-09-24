@@ -20,11 +20,13 @@
 
             <!-- need to initialize in jquery -->
             <div class="input-field col s12">
-              <select class="browser-default">
+              <select class="browser-default" id="topic_name">
                 <option value="" disabled selected>Choose Topic</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="javascript">Javascript</option>
+                <option value="api AJAX">API/AJAX</option>
+                <option value="mysql">mySQL</option>
               </select>
             </div>
 
@@ -32,7 +34,7 @@
               <textarea id="textarea1" class="materialize-textarea" placeholder="Description (Required)"></textarea>
             </div>
 
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <button class="btn waves-effect waves-light" type="submit" name="action" id="submit">Submit
               <i class="material-icons right">send</i>
             </button>
 
