@@ -93,9 +93,9 @@ module.exports = function (app) {
     req.session.errors = null;
   });
 
-  app.get("/account", function (req, res) {
+  app.get("/account/:id", function (req, res) {
     if (req.session.success) {
-      db.Users.findOne({}).then(function (dbUsers) {
+      db.Users.findOne({ where: { id: req.params.id } }).then(function (dbUsers) {
         res.render("myAccount/index", {
           users: dbUsers,
           success: req.session.success
