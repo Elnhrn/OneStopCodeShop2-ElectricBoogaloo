@@ -78,7 +78,7 @@ module.exports = function (app) {
   app.get("/forum", function (req, res) {
     if (req.session.success) {
       db.Topics.findAll({}).then(function (dbTopics) {
-        db.Posts.findAll({}).then(function (dbPosts) {
+        db.Posts.findAll({ order: ["post_rating", "ASC" ] }).then(function (dbPosts) {
           res.render("forum/index", {
             msg: "Welcome to the forum!",
             topics: dbTopics,
@@ -109,8 +109,8 @@ module.exports = function (app) {
   // do we need this?
   app.get("/topics/:id", function (req, res) {
     if (req.session.success) {
-      db.Topics.findOne({ where: { id: req.params.id } }).then(function(dbTopics) {
-        db.Posts.findAll({ where: { TopicID: req.params.id } }).then(function(dbPosts) {
+      db.Topics.findOne({ where: { id: req.params.id } }).then(function (dbTopics) {
+        db.Posts.findAll({ where: { TopicID: req.params.id } }).then(function (dbPosts) {
           res.render("topics/index", {
             topics: dbTopics,
             posts: dbPosts,
