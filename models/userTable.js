@@ -45,15 +45,7 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-
     Users.associate = function (models) {
-        Users.hasMany(models.Topics, {
-            foreignKey: {
-                allowNull: false
-            },
-            onDelete: "restrict",
-            onUpdate: "cascade"
-        });
         Users.hasMany(models.Posts, {
             foreignKey: {
                 allowNull: false
