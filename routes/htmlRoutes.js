@@ -107,12 +107,15 @@ module.exports = function (app) {
   });
 
   // do we need this?
-  app.get("/topics", function (req, res) {
+  app.get("/topics/:id", function (req, res) {
     if (req.session.success) {
-      db.Topics.findAll({}).then(function (dbTopics) {
-        res.render("topics/index", {
-          topics: dbTopics,
-          success: req.session.success
+      db.Topics.findOne({ where: { id: req.params.id } }).then(function(dbTopics) {
+        db.Posts.findAll({ where: { TopicID: req.params.id } }).then(function(dbPosts) {
+          res.render("topics/index", {
+            topics: dbTopics,
+            posts: dbPosts,
+            success: req.session.success
+          });
         });
       });
     } else {
@@ -122,9 +125,9 @@ module.exports = function (app) {
 
   app.get("/users/:id", function (req, res) {
     if (req.session.success) {
-      db.Users.findOne({ where: { id: req.params.id } }).then(function(dbUsers) {
-        db.Posts.findAll({ where: { UserId: req.params.id } }).then(function(dbPosts) {
-          db.Replies.findAll({ where: { UserId: req.params.id } }).then(function(dbReplies) {
+      db.Users.findOne({ where: { id: req.params.id } }).then(function (dbUsers) {
+        db.Posts.findAll({ where: { UserId: req.params.id } }).then(function (dbPosts) {
+          db.Replies.findAll({ where: { UserId: req.params.id } }).then(function (dbReplies) {
             res.render("author/index", {
               user: dbUsers,
               userPosts: dbPosts,
