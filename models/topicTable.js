@@ -27,12 +27,6 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Topics.associate = function (models) {
-        Topics.belongsTo(models.Users, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-
         Topics.hasMany(models.Posts, {
             foreignKey: {
                 allowNull: false
