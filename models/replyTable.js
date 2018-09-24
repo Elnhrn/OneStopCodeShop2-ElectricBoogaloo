@@ -7,6 +7,7 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
+
         reply_rating: {
             type: DataTypes.INTEGER,
             allowNull: false,
