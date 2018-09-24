@@ -83,7 +83,7 @@ module.exports = function (app) {
             msg: "Welcome to the forum!",
             topics: dbTopics,
             posts: dbPosts,
-            session: req.session.success
+            success: req.session.success
           });
         });
       });
@@ -93,7 +93,7 @@ module.exports = function (app) {
     req.session.errors = null;
   });
 
-  app.get("/account", function (req, res) {
+  app.get("/account/:id", function (req, res) {
     if (req.session.success) {
       db.Users.findOne({}).then(function (dbUsers) {
         res.render("myAccount/index", {
@@ -160,12 +160,14 @@ module.exports = function (app) {
       // db.Posts.create({}).then(function(dbPosts) {
       res.render("createPost/index", {
         //     newPost: dbPosts
+        success: req.session.success
         //   });
       });
     } else {
       res.redirect("/login");
     }
   });
+
   // });
 
   app.get("/logout", function (req, res) {
