@@ -22,6 +22,11 @@ module.exports = function (sequelize, DataTypes) {
             },
             defaultValue: 0
         },
+        post_number: {
+            type: DataTypes.INTEGER,
+            alloNull: false,
+            defaultValue: 0
+        },
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
