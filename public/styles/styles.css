@@ -33,7 +33,7 @@ nav {
 
 .splash-img-opacity {
   position: absolute;
-  background-color: rgba(255,255,255, 0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   width: 100%;
   height: 100%;
   top: 0;
@@ -145,6 +145,7 @@ tr {
 }
 
 /* footer */
+
 .footer {
   position: fixed;
   left: 0;
@@ -154,6 +155,7 @@ tr {
 }
 
 /* login */
+
 .login-body, .register-body {
   margin: 0 auto 20px;
 }
@@ -192,10 +194,16 @@ a:link {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.user-posts > li {
+.user-posts>li {
   padding: 0 5px;
 }
 
 .user-posts {
   margin-bottom: 20px;
+}
+
+/* post */
+
+#textarea1 {
+  left: .75rem !important;
 }

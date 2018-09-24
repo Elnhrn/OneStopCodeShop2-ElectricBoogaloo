@@ -84,7 +84,7 @@ module.exports = function (app) {
             msg: "Welcome to the forum!",
             topics: dbTopics,
             posts: dbPosts,
-            session: req.session.success
+            success: req.session.success
           });
         });
       });
@@ -189,12 +189,14 @@ module.exports = function (app) {
       // db.Posts.create({}).then(function(dbPosts) {
       res.render("createPost/index", {
         //     newPost: dbPosts
+        success: req.session.success
         //   });
       });
     } else {
       res.redirect("/login");
     }
   });
+
   // });
 
   app.get("/logout", function (req, res) {
