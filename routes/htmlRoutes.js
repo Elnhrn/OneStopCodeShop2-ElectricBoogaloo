@@ -1,8 +1,8 @@
 var db = require("../models");
 
-module.exports = function (app) {
+module.exports = function(app) {
   // Load index page
-  app.get("/", function (req, res) {
+  app.get("/", function(req, res) {
     res.render("index", {
       msg: "Welcome to the electric boogaloo!",
       success: req.session.success
@@ -16,7 +16,7 @@ module.exports = function (app) {
       res.redirect("/account");
     } else {
       res.render("login/index", {
-        msg: "Welcome back/Create new?",
+        msg: "Sorry, we couldn't locate your account.",
         title: "Form Validation",
         success: req.session.success,
         errors: req.session.errors
@@ -25,38 +25,38 @@ module.exports = function (app) {
     }
   });
 
-  app.post("/login", function (req, res) {
+  app.post("/login", function(req, res) {
     db.Users.findOne({
       where: {
         user_name: req.body.username
       }
-    }).then(function (user) {
-      req
-        .check("password", "Password is invalid")
-        .isLength({
-          min: 4
-        })
-        .equals(user.user_pass);
-      var errors = req.validationErrors();
-      if (errors) {
-        req.session.errors = errors;
-        req.session.success = false;
+    })
+      .then(function(user) {
+        req
+          .check("password", "Password is invalid")
+          .isLength({
+            min: 4
+          })
+          .equals(user.user_pass);
+        var errors = req.validationErrors();
+        if (errors) {
+          req.session.errors = errors;
+          req.session.success = false;
+          res.redirect("/login");
+        } else {
+          req.session.user = user;
+          req.session.success = true;
+          res.redirect("/forum");
+        }
+      })
+      .catch(function(err) {
+        req.session.errors = err;
         res.redirect("/login");
-      } else {
-        req.session.username = user.user_name;
-        req.session.firstName = user.user_firstName;
-        req.session.lastName = user.user_lastName;
-        req.session.success = true;
-        res.redirect("/forum");
-      }
-    }).catch(function(err) {
-      req.session.errors = err;
-      res.redirect("/login");
-    });
+      });
   });
 
   // CREATE ACCOUNT ROUTES
-  app.get("/register", function (req, res) {
+  app.get("/register", function(req, res) {
     res.render("register/index", {
       title: "Form Validation",
       success: req.session.success,
@@ -65,7 +65,7 @@ module.exports = function (app) {
     req.session.errors = null;
   });
 
-  app.post("/register", function (req, res) {
+  app.post("/register", function(req, res) {
     req
       .check("password", "Password is invalid")
       .isLength({
@@ -84,40 +84,43 @@ module.exports = function (app) {
         user_name: req.body.username,
         user_pass: req.body.password,
         user_level: 0
-      }).then(function () {
+      }).then(function(user) {
+        req.session.user = user;
         req.session.success = true;
         res.redirect("/forum");
       });
     }
   });
 
-  app.get("/forum", function (req, res) {
+  app.get("/forum", function(req, res) {
     if (req.session.success) {
-      db.Topics.findAll({}).then(function (dbTopics) {
+      db.Topics.findAll({}).then(function(dbTopics) {
         // COME BACK TO THIS
-        db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
-          res.render("forum/index", {
-            msg: "Welcome to the forum!",
-            topics: dbTopics,
-            posts: dbPosts,
-            success: req.session.success
-          });
-        });
+        db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(
+          function(dbPosts) {
+            res.render("forum/index", {
+              msg: "Welcome to the forum!",
+              topics: dbTopics,
+              posts: dbPosts,
+              success: req.session.success
+            });
+          }
+        );
       });
     } else {
       res.redirect("/login");
     }
   });
 
-  app.get("/account/:id", function (req, res) {
+  app.get("/account/:id", function(req, res) {
+    req.params.id = req.session.id;
     if (req.session.success) {
-      db.Users.findOne({ where: { id: req.params.id } }).then(function (dbUsers) {
+      db.Users.findOne({ where: { id: req.params.id } }).then(function(
+        dbUsers
+      ) {
         res.render("myAccount/index", {
-          users: dbUsers,
-          success: req.session.success,
-          username: req.session.username,
-          firstName: req.session.firstName,
-          lastName: req.session.lastName
+          users: req.session.user,
+          success: req.session.success
         });
       });
     } else {
@@ -126,19 +129,25 @@ module.exports = function (app) {
   });
 
   // do we need this?
-  app.get("/topics/:id", function (req, res) {
+  app.get("/topics/:id", function(req, res) {
     if (req.session.success) {
-      db.Topics.findOne({ where: { id: req.params.id } }).then(function (dbTopics) {
-        db.Posts.findAll({ where: { TopicID: req.params.id } }).then(function (dbPosts) {
+      db.Topics.findOne({ where: { id: req.params.id } }).then(function(
+        dbTopics
+      ) {
+        db.Posts.findAll({ where: { TopicID: req.params.id } }).then(function(
+          dbPosts
+        ) {
           // COME BACK TO THIS
-          db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts2) {
-            res.render("topics/index", {
-              topics: dbTopics,
-              posts2: dbPosts2,
-              posts: dbPosts,
-              success: req.session.success
-            });
-          });
+          db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(
+            function(dbPosts2) {
+              res.render("topics/index", {
+                topics: dbTopics,
+                posts2: dbPosts2,
+                posts: dbPosts,
+                success: req.session.success
+              });
+            }
+          );
         });
       });
     } else {
@@ -146,18 +155,24 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/users/:id", function (req, res) {
+  app.get("/users/:id", function(req, res) {
     if (req.session.success) {
-      db.Users.findOne({ where: { id: req.params.id } }).then(function (dbUsers) {
-        db.Posts.findAll({ where: { UserId: req.params.id } }).then(function (dbPosts) {
-          db.Replies.findAll({ where: { UserId: req.params.id } }).then(function (dbReplies) {
-            res.render("author/index", {
-              user: dbUsers,
-              userPosts: dbPosts,
-              userReplies: dbReplies,
-              success: req.session.success
-            });
-          });
+      db.Users.findOne({ where: { id: req.params.id } }).then(function(
+        dbUsers
+      ) {
+        db.Posts.findAll({ where: { UserId: req.params.id } }).then(function(
+          dbPosts
+        ) {
+          db.Replies.findAll({ where: { UserId: req.params.id } }).then(
+            function(dbReplies) {
+              res.render("author/index", {
+                user: dbUsers,
+                userPosts: dbPosts,
+                userReplies: dbReplies,
+                success: req.session.success
+              });
+            }
+          );
         });
       });
     } else {
@@ -165,44 +180,52 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/posts", function (req, res) {
+  app.get("/posts", function(req, res) {
     if (req.session.success) {
-      db.Posts.findAll({}).then(function (dbPosts2) {
+      db.Posts.findAll({}).then(function(dbPosts2) {
         // COME BACK TO THIS
-        db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
-          res.render("posts/index", {
-            posts2: dbPosts2,
-            posts: dbPosts,
-            success: req.session.success
-          });
-        });
+        db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(
+          function(dbPosts) {
+            res.render("posts/index", {
+              posts2: dbPosts2,
+              posts: dbPosts,
+              success: req.session.success
+            });
+          }
+        );
       });
     } else {
       res.redirect("/login");
     }
   });
 
-  app.get("/posts/:id", function (req, res) {
+  app.get("/posts/:id", function(req, res) {
     if (req.session.success) {
-      db.Posts.findOne({ where: { id: req.params.id } }).then(function (dbPosts2) {
-        db.Replies.findAll({ where: { PostId: req.params.id } }).then(function (dbReplies) {
+      db.Posts.findOne({ where: { id: req.params.id } }).then(function(
+        dbPosts2
+      ) {
+        db.Replies.findAll({ where: { PostId: req.params.id } }).then(function(
+          dbReplies
+        ) {
           // COME BACK TO THIS
-          db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
-            res.render("this-post/index", {
-              posts2: dbPosts2,
-              posts: dbPosts,
-              replies: dbReplies,
-              success: req.session.success
-            });
-          });
+          db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(
+            function(dbPosts) {
+              res.render("this-post/index", {
+                posts2: dbPosts2,
+                posts: dbPosts,
+                replies: dbReplies,
+                success: req.session.success
+              });
+            }
+          );
         });
       });
     } else {
       res.redirect("/login");
     }
-  })
+  });;
 
-  app.get("/add-a-post", function (req, res) {
+  app.get("/add-a-post", function(req, res) {
     if (req.session.success) {
       // db.Posts.create({}).then(function(dbPosts) {
       res.render("createPost/index", {
@@ -217,7 +240,7 @@ module.exports = function (app) {
 
   // });
 
-  app.get("/logout", function (req, res) {
+  app.get("/logout", function(req, res) {
     req.session.destroy();
     res.redirect("/");
   });
