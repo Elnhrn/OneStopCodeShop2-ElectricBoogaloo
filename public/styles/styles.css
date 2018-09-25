@@ -146,13 +146,13 @@ tr {
 
 /* footer */
 
-.footer {
+/* .footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
-}
+} */
 
 /* login */
 
@@ -180,7 +180,7 @@ a:link {
 }
 
 .acct-property {
-  width: 90px;
+  width: 100px;
 }
 
 .errors {
@@ -202,6 +202,10 @@ a:link {
   margin-bottom: 20px;
 }
 
+.user-posts>li {
+  margin-bottom: 10px;
+}
+
 /* post */
 
 #textarea1 {
@@ -218,4 +222,18 @@ a:link {
 
 .rating {
   font-size: 20px !important;
+}
+
+#submit {
+  margin-left: 5px;
+}
+
+.go-back {
+  margin: 30px 0;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 15px;
+}
+
+.go-back a {
+  color:#838383 !important;
 }
