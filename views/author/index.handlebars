@@ -9,8 +9,8 @@
       <div class="body-title">POSTS</div>
       <!-- for each loop for hb for all user posts -->
       <ul class="user-posts">
-        {{#each userPosts}}
-          <li><a href="/posts/{{this.id}}">{{this.post_subject}}</a></li>
+          {{#each userPosts}}
+        <li><a href="/posts/{{this.id}}">{{this.post_subject}}</a></li>
         {{/each}}
       </ul>
       <div class="body-title">COMMENTS</div>

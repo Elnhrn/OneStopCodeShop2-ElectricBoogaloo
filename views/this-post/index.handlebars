@@ -1,5 +1,3 @@
-           <p>{{this.reply_rating}}</p>
-
 <div class="container">
 
     <div class="row main-title">
@@ -15,7 +13,7 @@
             </div>
             <p class="padding">{{posts2.post_body}}</p>
 
-            <div class="body-title">COMMENTS</div>
+            <div class="body-title">COMMENTS ({{posts2.post_number}})</div>
             <!-- for each loop for hb for all user comments -->
             <ul class="user-posts">
                 {{#each replies}}
