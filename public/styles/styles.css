@@ -76,7 +76,7 @@ nav {
 th, .acct-property, .body-title {
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .th {
@@ -88,16 +88,16 @@ tr {
 }
 
 .tcol1 {
-  width: 55%;
+  width: 50%;
 }
 
 .tcol2 {
-  width: 17%;
+  width: 20%;
   text-align: center;
 }
 
 .tcol3 {
-  width: 28%;
+  width: 30%;
 }
 
 .fresh td {
@@ -206,4 +206,16 @@ a:link {
 
 #textarea1 {
   left: .75rem !important;
+}
+
+.post-title {
+  font-weight: bold;
+}
+
+.padding, .post-title {
+  padding: 5px;
+}
+
+.rating {
+  font-size: 20px !important;
 }

@@ -9,16 +9,17 @@
       <div class="body-title">POSTS</div>
       <!-- for each loop for hb for all user posts -->
       <ul class="user-posts">
-          {{#each userPosts}}
-        <li><a href="/posts/:id">{{this.post_subject}}</a></li>
+        {{#each userPosts}}
+          <li><a href="/posts/{{this.id}}">{{this.post_subject}}</a></li>
         {{/each}}
       </ul>
       <div class="body-title">COMMENTS</div>
       <!-- for each loop for hb for all user comments -->
       <ul class="user-posts">
-          {{#each userReplies}}
-          {{!-- DO WE WANT A WAY TO REFERENCE THE POST THIS IS ASSOCIATED WITH? AND DO WE WANT THEM TO GO TO THE SPOT ON THE PAGE WHERE THIS REPLY IS? --}}
-        <li>{{this.reply_content}}</li>
+        {{#each userReplies}}
+        {{!-- DO WE WANT A WAY TO REFERENCE THE POST THIS IS ASSOCIATED WITH? AND DO WE WANT THEM TO GO TO THE SPOT ON
+        THE PAGE WHERE THIS REPLY IS? --}}
+          <li>{{this.reply_content}}</li>
         {{/each}}
       </ul>
     </div>
