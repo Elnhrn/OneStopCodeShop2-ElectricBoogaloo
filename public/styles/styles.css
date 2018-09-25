@@ -76,7 +76,7 @@ nav {
 th, .acct-property, .body-title {
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .th {
@@ -88,16 +88,16 @@ tr {
 }
 
 .tcol1 {
-  width: 55%;
+  width: 50%;
 }
 
 .tcol2 {
-  width: 17%;
+  width: 20%;
   text-align: center;
 }
 
 .tcol3 {
-  width: 28%;
+  width: 30%;
 }
 
 .fresh td {
@@ -146,13 +146,13 @@ tr {
 
 /* footer */
 
-.footer {
+/* .footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
-}
+} */
 
 /* login */
 
@@ -180,7 +180,7 @@ a:link {
 }
 
 .acct-property {
-  width: 90px;
+  width: 100px;
 }
 
 .errors {
@@ -202,8 +202,38 @@ a:link {
   margin-bottom: 20px;
 }
 
+.user-posts>li {
+  margin-bottom: 10px;
+}
+
 /* post */
 
 #textarea1 {
   left: .75rem !important;
+}
+
+.post-title {
+  font-weight: bold;
+}
+
+.padding, .post-title {
+  padding: 5px;
+}
+
+.rating {
+  font-size: 20px !important;
+}
+
+#submit {
+  margin-left: 5px;
+}
+
+.go-back {
+  margin: 30px 0;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 15px;
+}
+
+.go-back a {
+  color:#838383 !important;
 }

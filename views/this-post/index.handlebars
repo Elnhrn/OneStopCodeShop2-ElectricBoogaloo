@@ -1,24 +1,44 @@
-<div>
-<div>
-    <p>title: {{posts2.post_subject}}</p>
-    <p>rating: {{posts2.post_rating}}</p>
-    <p>{{posts2.post_body}}</p>
-    <p>replies: {{posts2.post_number}}</p>
-    <hr>
+<div class="container">
 
-</div>
+    <div class="row main-title">
+        POST // {{posts2.post_subject}}
+        <div class="line"></div>
+    </div>
 
-<div>
-    <ul>
-        <hr>
-    {{#each replies}}
-        <li>
-            <p>{{this.reply_content}}</p>
-            <p>{{this.reply_rating}}</p>
-        </li>
-        <hr>
-    {{/each}}
-    </ul>
-</div>
+    <div class="row">
+        <!-- post body -->
+        <div class="col m9 forum-col">
+            <div class="body-title">{{posts2.post_subject}}
+                <div style="float:right"><i class="material-icons small rating">thumbs_up_down</i>
+                    {{posts2.post_rating}}</span></div>
+            </div>
+            <p class="padding">{{posts2.post_body}}</p>
 
+            <div class="body-title">COMMENTS</div>
+            <!-- for each loop for hb for all user comments -->
+            <ul class="user-posts">
+                {{#each replies}}
+                <li>{{this.reply_content}}
+                    <span style="float:right"><i class="material-icons tiny">thumb_up</i> {{this.reply_rating}}</span></li>
+                {{/each}}
+            </ul>
+
+            <div class="input-field col s12">
+                <textarea id="textarea1" placeholder="Write your comment here." class="materialize-textarea"></textarea>
+                <label id="textarea1"></label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action" id="submit">Submit
+                <i class="material-icons right">send</i>
+            </button>
+
+            <div class="go-back"><a href="/forum"><i class="material-icons tiny">arrow_back</i> BACK TO FORUM</a></div>
+
+        </div>
+
+        <!-- sidebar -->
+        <div class="col m3">
+            {{> sidebar}}
+        </div>
+
+    </div>
 </div>
