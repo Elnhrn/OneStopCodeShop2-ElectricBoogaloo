@@ -5,7 +5,30 @@
 body {
   color: #3d3d3d;
   font-family: 'Pontano Sans', sans-serif;
-  margin-bottom: 80px;
+}
+
+/* footer */
+
+footer {
+  margin-top: 100px;
+}
+
+.page-footer {
+  padding-top: 0px !important;
+  background: #919191;
+}
+
+.footer-row {
+  margin-bottom: 0px !important;
+}
+
+h5 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+}
+
+.team {
+  text-align: center;
 }
 
 /* top fixed nav bar */
