@@ -8,13 +8,13 @@
 
       <div class="login-form">
         {{#if errors }}
-        <section class="errors">
-          <ul>
-            {{!-- {{#each errors }} --}}
-            <li>{{ this.msg }}</li>
-            {{!-- {{/each}} --}}
-          </ul>
-        </section>
+          <section class="errors">
+            <ul>
+              {{#each errors }}
+                <li>{{ this.msg }}</li>
+              {{/each}}
+            </ul>
+          </section>
         {{/if}}
         <form action="/login" method="post">
           <div class="input input-field col-sm-12">
