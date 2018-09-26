@@ -156,10 +156,7 @@ module.exports = function(app) {
       db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
         res.render("createPost/index", {
           currentUser: req.session.user,
-<<<<<<< HEAD
-=======
           title: "Make A Post",
->>>>>>> master
           posts: dbPosts,
           success: req.session.success
         });
