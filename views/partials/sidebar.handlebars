@@ -23,7 +23,7 @@
         <!-- for each hb loop with top posts object -->
         <ul>
             {{#each posts}}
-            <li>{{this.post_subject}}</li>
+            <li><a href="/posts/{{this.id}}">{{this.post_subject}}<a></li>
             {{/each}}
         </ul>
     </div>

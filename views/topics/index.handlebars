@@ -1,21 +1,39 @@
 <div class="container">
+
+    <div class="row main-title">
+        TOPIC // {{topics.topic_name}}
+        <div class="line"></div>
+    </div>
+
     <div class="row">
-        <div class="col-8 offset-2">
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h5 class="card-title">Topics</h5>
-                    <div>
-                        <p>{{topics.topic_name}}</p>
-                        <p>{{topics.topic_description}}</p>
-                    </div>
-                    {{#each posts}}
-                    <div>
-                        <p><strong>Post Name</strong>: {{this.post_subject}}</p>
-                    </div>
-                    {{/each}}
-                    <a href="/">← Back To Home</a>
-                </div>
-            </div>
+        <!-- post body -->
+        <div class="col m9 forum-col">
+            <table>
+                <!-- forum headers -->
+                <tr class="th">
+                    <th class="tcol1">THREAD</th>
+                    <th class="tcol2">POSTS</th>
+                    <th class="tcol3">FRESHNESS</th>
+                </tr>
+                <!-- forum data -->
+                <!-- for each loop through categories-->
+                {{#each posts2}}
+                <tr>
+                    <td><a href="/posts/{{this.id}}">{{this.post_subject}}</a></td>
+                    <td class="tcol2">0</td>
+                    <td>{{this.updatedAt}}</td>
+                </tr>
+                {{/each}}
+            </table>
+
+            <div class="go-back"><a href="/forum"><i class="material-icons tiny">arrow_back</i> BACK TO FORUM</a></div>
+
         </div>
+
+        <!-- sidebar -->
+        <div class="col m3">
+            {{> sidebar}}
+        </div>
+
     </div>
 </div>

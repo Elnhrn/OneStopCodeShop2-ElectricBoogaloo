@@ -5,7 +5,6 @@
         <div class="line"></div>
     </div>
 
-
     <div class="row">
         <!-- post body -->
         <div class="col m9 forum-col">
@@ -20,9 +19,9 @@
                 <!-- for each loop through categories-->
                 {{#each topics}}
                 <tr>
-                    <td>{{this.topic_name}}</td>
-                    <td class="tcol2">0</td>
-                    <td>{{this.createdAt}}</td>
+                    <td><a href="/topics/{{this.id}}">{{this.topic_name}}</a></td>
+                    <td class="tcol2">{{this.topic_number}}</td>
+                    <td>{{this.updatedAt}}</td>
                 </tr>
                 {{/each}}
             </table>
@@ -30,10 +29,8 @@
 
         <!-- sidebar -->
         <div class="col m3">
-        {{> sidebar}}
-    </div>
-
-</div>
+            {{> sidebar}}
         </div>
+
     </div>
 </div>
