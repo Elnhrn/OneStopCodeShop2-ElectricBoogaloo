@@ -18,7 +18,7 @@
       <ul class="user-posts">
           {{#each userReplies}}
           {{!-- DO WE WANT A WAY TO REFERENCE THE POST THIS IS ASSOCIATED WITH? AND DO WE WANT THEM TO GO TO THE SPOT ON THE PAGE WHERE THIS REPLY IS? --}}
-        <li>{{this.reply_content}}</li>
+        <li><a href="/posts/{{this.PostId}}">{{this.reply_content}}</a></li>
         {{/each}}
       </ul>
       </ul>
