@@ -2,12 +2,19 @@
     <nav>
         <div class="nav-wrapper container">
             <a href="/forum" class="brand-logo">OneStopCodeShop</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="https://eneaantonicelli.github.io/Project1/index.html">Code Search App</a></li>
                 <!-- add id file path for my account URL -->
-                <li><a href="/account/{{user.id}}">My Account</a></li>
+                <li><a href="/account/{{currentUser.id}}">My Account</a></li>
                 <li><a href="/logout">Log out</a></li>
             </ul>
         </div>
     </nav>
 </div>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="https://eneaantonicelli.github.io/Project1/index.html">Code Search App</a></li>
+    <li><a href="/account/{{user.id}}">My Account</a></li>
+    <li><a href="/logout">Log out</a></li>
+</ul>

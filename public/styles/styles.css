@@ -12,12 +12,15 @@ body {
 
 nav {
   background-color: #232323;
-  height: 50px;
-  line-height: 50px;
 }
 
 #nav-mobile>li {
   display: inline-block;
+}
+
+nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
+  height: 50px;
+  line-height: 50px;
 }
 
 .navbar-fixed {

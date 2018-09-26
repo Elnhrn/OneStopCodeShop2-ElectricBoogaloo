@@ -18,7 +18,7 @@
       <ul class="user-posts">
           {{#each userReplies}}
           {{!-- DO WE WANT A WAY TO REFERENCE THE POST THIS IS ASSOCIATED WITH? AND DO WE WANT THEM TO GO TO THE SPOT ON THE PAGE WHERE THIS REPLY IS? --}}
-        <li>{{this.reply_content}}</li>
+        <li><a href="/posts/{{this.PostId}}">{{this.reply_content}}</a></li>
         {{/each}}
       </ul>
       </ul>
@@ -30,19 +30,22 @@
           <tbody>
             <tr>
               <td class="acct-property">Username: </td>
-              <td>{{users.user_name}}</td>
+              <td>{{currentUser.user_name}}</td>
             </tr>
             <tr>
               <td class="acct-property">First Name: </td>
-              <td>{{users.user_firstName}}</td>
+              <td>{{currentUser.user_firstName}}</td>
             </tr>
             <tr>
               <td class="acct-property">Last Name: </td>
-              <td>{{users.user_lastName}}</td>
+              <td>{{currentUser.user_lastName}}</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+
+    <div class="go-back"><a href="/forum"><i class="material-icons tiny">arrow_back</i> BACK TO FORUM</a></div>
+    
   </div>
 </div>
