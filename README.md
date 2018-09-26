@@ -34,3 +34,13 @@ You will also want to adjust the credentials in `config.json` to those in your l
 
 Run the `schema.sql` to create the database and `seeds.sql` to create sample user accounts.
 
+## Usage
+Once you have completed installation, you can run `npm start` to start the application. You can access it at `localhost:3000`.
+
+## Contributors
+[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/0)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/0)
+[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/1)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/1)
+[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/2)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/2)
+[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/3)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/3)
+[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/4)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/4)
+[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/5)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/5)
