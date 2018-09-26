@@ -1,7 +1,6 @@
 require("dotenv").config();
 var express = require("express");
 var path = require("path");
-var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
@@ -19,13 +18,16 @@ server.listen(3000);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(expressValidator());
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(
   expressSession({
+    key: "user_sid",
     secret: "JRS",
     saveUninitialized: false,
-    resave: false
+    resave: false,
+    cookie: {
+      expires: 600000
+    }
   })
 );
 
@@ -41,6 +43,7 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/loginRoutes")(app);
 require("./routes/topics-api-routes")(app);
 require("./routes/users-api-routes")(app);
 require("./routes/post-api-routes")(app);

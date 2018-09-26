@@ -16,7 +16,23 @@ module.exports = function (sequelize, DataTypes) {
             },
             defaultValue: 0
         },
+        // reply_createDate: {
+        //     type: DataTypes.DATEONLY,
+        //     allowNull: false,
+        //     validate: {
+        //         len: [1]
+        //     },
+        //     defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        // },
         createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            validate: {
+                len: [1]
+            },
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        },
+        updatedAt: {
             type: DataTypes.DATE,
             allowNull: false,
             validate: {
