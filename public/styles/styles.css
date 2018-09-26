@@ -97,6 +97,8 @@ nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
   padding: .8px 20px;
   width: 60px;
   margin: 8px auto;
+  height: 1px;
+  clear: both;
 }
 
 th, .acct-property, .body-title {
@@ -264,6 +266,7 @@ input:focus:-ms-input-placeholder {
 
 .padding, .post-title {
   padding: 5px;
+  padding-top: 25px;
 }
 
 .rating {
@@ -281,5 +284,29 @@ input:focus:-ms-input-placeholder {
 }
 
 .go-back a {
-  color: #838383 !important;
+  color:#838383 !important;
+}
+
+a:hover {
+  color: #616161;
+  text-decoration: none;
+}
+
+/* Enea Added Code */
+.ega-forumTitle {
+  width: 100%;
+  font-size: 2rem;
+}
+
+.main-title {
+  width: 100%;
+  font-size: 2rem;
+  display: inline-block;
+}
+
+#registerFirstName, #registerLastName {
+  float: left;
+}
+#registerUsername {
+  clear: both;
 }
