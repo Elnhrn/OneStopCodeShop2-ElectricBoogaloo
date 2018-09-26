@@ -4,6 +4,7 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     res.render("index", {
+      currentUser: req.session.user,
       msg: "Welcome to the electric boogaloo!",
       success: req.session.success
     });
@@ -157,6 +158,7 @@ module.exports = function(app) {
       // db.Posts.create({}).then(function(dbPosts) {
       db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
         res.render("createPost/index", {
+          currentUser: req.session.user,
           posts: dbPosts,
           success: req.session.success
         });
