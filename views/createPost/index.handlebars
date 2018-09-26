@@ -8,18 +8,18 @@
 
   <div class="row">
     <!-- post body -->
-    <div class="col m9 forum-col">
+    <div class="col-md-9 forum-col">
       <div class="row">
 
-        <form class="col s12">
+        <form class="col-sm-12">
           <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col-sm-12">
               <input id="post_title" type="text">
               <label for="post_title" id="textarea1">Post Title</label>
             </div>
 
             <!-- need to initialize in jquery and add topics to select menu -->
-            <div class="input-field col s12">
+            <div class="input-field col-sm-12">
               <select class="browser-default" id="topic_name">
                 <option value="" disabled selected>Choose Topic</option>
                 <option value="HTML">HTML</option>
@@ -30,7 +30,7 @@
               </select>
             </div>
 
-            <div class="input-field col s12">
+            <div class="input-field col-sm-12">
               <textarea id="textarea1" class="materialize-textarea"></textarea>
               <label id="textarea1">Description (Required)</label>
             </div>
@@ -46,7 +46,7 @@
     </div>
 
     <!-- sidebar -->
-    <div class="col m3">
+    <div class="col-md-3">
       {{> sidebar}}
     </div>
 

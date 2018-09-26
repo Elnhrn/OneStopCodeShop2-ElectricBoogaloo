@@ -71,6 +71,8 @@ nav {
   padding: .8px 20px;
   width: 60px;
   margin: 8px auto;
+  height: 1px;
+  clear: both;
 }
 
 th, .acct-property, .body-title {
@@ -236,4 +238,28 @@ a:link {
 
 .go-back a {
   color:#838383 !important;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* Enea Added Code */
+.ega-forumTitle {
+  width: 100%;
+  font-size: 2rem;
+}
+
+.main-title {
+  width: 100%;
+  font-size: 2rem;
+  display: inline-block;
+}
+
+#registerFirstName, #registerLastName {
+  float: left;
+}
+#registerUsername {
+  clear: both;
 }
