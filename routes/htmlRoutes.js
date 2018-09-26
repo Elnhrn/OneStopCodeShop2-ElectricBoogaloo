@@ -33,9 +33,9 @@ module.exports = function(app) {
   app.get("/account/:id", function(req, res) {
     req.params.id = req.session.id;
     if (req.session.success) {
-      db.Users.findOne({ where: { id: req.params.id } }).then(function (dbUsers) {
-        db.Posts.findAll({ where: { UserId: req.params.id } }).then(function (dbPosts) {
-          db.Replies.findAll({ where: { UserId: req.params.id } }).then(function (dbReplies) {
+      db.Users.findOne({ where: { id: req.params.id } }).then(function(dbUsers) {
+        db.Posts.findAll({ where: { UserId: req.params.id } }).then(function(dbPosts) {
+          db.Replies.findAll({ where: { UserId: req.params.id } }).then(function(dbReplies) {
             res.render("myAccount/index", {
               users: dbUsers,
               userPosts: dbPosts,
