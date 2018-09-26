@@ -14,24 +14,24 @@
         <form class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input id="post_title" type="text">
+              <input id="post_title" type="text" name="post_title">
               <label for="post_title" id="textarea1">Post Title</label>
             </div>
 
             <!-- need to initialize in jquery and add topics to select menu -->
             <div class="input-field col s12">
-              <select class="browser-default" id="topic_name">
+              <select class="browser-default" id="topic_name" name="topic_name">
                 <option value="" disabled selected>Choose Topic</option>
-                <option value="HTML">HTML</option>
-                <option value="CSS">CSS</option>
-                <option value="javascript">Javascript</option>
-                <option value="api AJAX">API/AJAX</option>
-                <option value="mysql">mySQL</option>
+                <option value="1">HTML</option>
+                <option value="2">CSS</option>
+                <option value="3">Javascript</option>
+                <option value="4">API/AJAX</option>
+                <option value="5">mySQL</option>
               </select>
             </div>
 
             <div class="input-field col s12">
-              <textarea id="textarea1" class="materialize-textarea"></textarea>
+              <textarea id="textarea1" class="materialize-textarea" name="post_body"></textarea>
               <label id="textarea1">Description (Required)</label>
             </div>
 
