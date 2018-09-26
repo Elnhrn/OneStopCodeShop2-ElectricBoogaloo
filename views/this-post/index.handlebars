@@ -8,18 +8,17 @@
     <div class="row">
         <!-- post body -->
         <div class="col m9 forum-col">
-            <div class="body-title">{{posts2.post_subject}}
-                <div style="float:right"><i class="material-icons small rating">thumbs_up_down</i>
-                    {{posts2.post_rating}}</span></div>
-            </div>
+            <div class="body-title">{{posts2.post_subject}}<br>
+            <i>{{posts2.updatedAt}}</i></div>
             <p class="padding">{{posts2.post_body}}</p>
 
-            <div class="body-title">COMMENTS</div>
+            <div class="body-title">COMMENTS ({{posts2.post_number}})</div>
             <!-- for each loop for hb for all user comments -->
             <ul class="user-posts">
                 {{#each replies}}
-                <li>{{this.reply_content}}
-                    <span style="float:right"><i class="material-icons tiny">thumb_up</i> {{this.reply_rating}}</span></li>
+                <li>{{this.reply_content}}<br>
+                <i>on {{this.updatedAt}}</i>
+                </li>
                 {{/each}}
             </ul>
 

@@ -47,8 +47,8 @@
 //     let postBody = $("#textarea1")
 //     // Adding an event listener for when the form is submitted
 //     $(postForm).on("submit", handleFormSubmit);
-    
-    
+
+
 //     // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
 //     var url = window.location.search;
 
@@ -59,7 +59,7 @@
 //     var userId;
 //     // Sets a flag for whether or not we're updating a post to be false initially
 //     var updating = false;
-  
+
 
 
 
@@ -73,10 +73,10 @@
 //     else if (url.indexOf("?author_id=") !== -1) {
 //       authorId = url.split("=")[1];
 //     }
-  
+
 //     // Getting the authors, and their posts
 //     getAuthors();
-  
+
 
 
 
@@ -97,7 +97,7 @@
 //           .trim(),
 //         TopicId: topic.val()
 //       };
-  
+
 //       // If we're updating a post run updatePost to update a post
 //       // Otherwise run submitPost to create a whole new post
 //       if (updating) {
@@ -108,14 +108,14 @@
 //         submitPost(newPost);
 //       }
 //     }
-  
+
 //     // Submits a new post and brings user to blog page upon completion
 //     function submitPost(post) {
 //       $.post("/api/posts", post, function() {
 //         window.location.href = "/blog";
 //       });
 //     }
-  
+
 //     // Gets post data for the current post if we're editing, or if we're adding to an author's existing posts
 //     function getPostData(id, type) {
 //       var queryUrl;
@@ -142,7 +142,7 @@
 //         }
 //       });
 //     }
-  
+
 //     // A function to get Authors and then render our list of Authors
 //     function getAuthors() {
 //       $.get("/api/authors", renderAuthorList);
@@ -164,7 +164,7 @@
 //       authorSelect.append(rowsToAdd);
 //       authorSelect.val(authorId);
 //     }
-  
+
 //     // Creates the author options in the dropdown
 //     function createAuthorRow(author) {
 //       var listOption = $("<option>");
@@ -172,7 +172,7 @@
 //       listOption.text(author.name);
 //       return listOption;
 //     }
-  
+
 //     // Update a given post, bring user to the blog page when done
 //     function updatePost(post) {
 //       $.ajax({
@@ -185,4 +185,12 @@
 //         });
 //     }
 //   });
-  
+
+$(document).ready(function () {
+    $('.sidenav').sidenav({
+        closeOnClick: true
+    });
+
+    $('.modal').modal();
+
+});

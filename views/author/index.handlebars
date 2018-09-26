@@ -9,7 +9,7 @@
       <div class="body-title">POSTS</div>
       <!-- for each loop for hb for all user posts -->
       <ul class="user-posts">
-          {{#each userPosts}}
+        {{#each userPosts}}
         <li><a href="/posts/{{this.id}}">{{this.post_subject}}</a></li>
         {{/each}}
       </ul>
@@ -19,9 +19,11 @@
         {{#each userReplies}}
         {{!-- DO WE WANT A WAY TO REFERENCE THE POST THIS IS ASSOCIATED WITH? AND DO WE WANT THEM TO GO TO THE SPOT ON
         THE PAGE WHERE THIS REPLY IS? --}}
-          <li>{{this.reply_content}}</li>
+        <li>{{this.reply_content}}</li>
         {{/each}}
       </ul>
+
+      <div class="go-back"><a href="/forum"><i class="material-icons tiny">arrow_back</i> BACK TO FORUM</a></div>
     </div>
 
     <div class="col m4">
@@ -44,5 +46,6 @@
         </table>
       </div>
     </div>
+
   </div>
 </div>
