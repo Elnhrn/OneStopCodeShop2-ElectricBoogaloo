@@ -209,6 +209,7 @@ module.exports = function (app) {
   });
 
   app.post("/add-a-post", function (req, res) {
+
     // NEED TO FIX USER ID
     db.Posts.create({
       post_subject: req.body.post_title,
@@ -216,7 +217,7 @@ module.exports = function (app) {
       post_rating: "0",
       post_number: "0",
       UserId: 1,
-      TopicID: req.body.topic_name.val()
+      TopicId: req.body.topic_name
     }).then(function () {
       console.log("did this post?")
       // res.redirect("/posts/" + this.id);
