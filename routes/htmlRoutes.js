@@ -17,6 +17,7 @@ module.exports = function(app) {
           // db.Users.findOne({}).then(function(dbUser) {
           res.render("forum/index", {
             msg: "Welcome to the forum!",
+            title: "Forum",
             topics: dbTopics,
             // user: dbUser,
             posts: dbPosts,
@@ -38,6 +39,7 @@ module.exports = function(app) {
           db.Replies.findAll({ where: { UserId: req.params.id } }).then(function(dbReplies) {
             res.render("myAccount/index", {
               users: dbUsers,
+              title: "My Account",
               userPosts: dbPosts,
               userReplies: dbReplies,
               success: req.session.success
