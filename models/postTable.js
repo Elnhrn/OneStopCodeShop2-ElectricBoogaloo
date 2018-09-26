@@ -27,14 +27,6 @@ module.exports = function (sequelize, DataTypes) {
             alloNull: false,
             defaultValue: 0
         },
-    //    post_displayDate: {
-    //         type: DataTypes.DATEONLY,
-    //         allowNull: false,
-    //         validate: {
-    //             len: [1]
-    //         },
-    //         defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-    //     },
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,

@@ -19,14 +19,6 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 0
         },
-        // topic_displayDate: {
-        //     type: DataTypes.DATEONLY,
-        //     allowNull: false,
-        //     validate: {
-        //         len: [1]
-        //     },
-        //     defaultValue: sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
-        // },
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
