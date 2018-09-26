@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col m8 offset-m2 register-body">
+        <div class="col-md-8 offset-md-2 register-body">
 
             <div class="main-title">SIGN UP
                 <div class="line"></div>
@@ -23,23 +23,23 @@
                 </section>
                 {{/if}}
                 <form action="/register" method="post">
-                    <div class="input input-field col s6">
+                    <div class="input input-field col-sm-6" id="registerFirstName">
                         <label for="firstName">First Name *</label>
                         <input type="text" id="firstName" name="firstName" class="validate">
                     </div>
-                    <div class="input input-field col s6">
+                    <div class="input input-field col-sm-6" id="registerLastName">
                         <label for="lastName">Last Name *</label>
                         <input type="text" id="lastName" name="lastName" class="validate">
                     </div>
-                    <div class="input input-field col s12">
+                    <div class="input input-field col-sm-12" id="registerUsername">
                         <label for="email">Username *</label>
                         <input type="text" id="username" name="username">
                     </div>
-                    <div class="input input-field col s12">
+                    <div class="input input-field col-sm-12">
                         <label for="password">Password *</label>
                         <input type="password" id="password" name="password">
                     </div>
-                    <div class="input input-field col s12">
+                    <div class="input input-field col-sm-12">
                         <label for="confirmPassword">Confirm Password *</label>
                         <input type="password" id="confirmPassword" name="confirmPassword">
                     </div>
