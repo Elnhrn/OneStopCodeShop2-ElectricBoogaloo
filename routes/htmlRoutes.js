@@ -152,6 +152,9 @@ module.exports = function (app) {
   });
 
   app.get("/add-a-post", function (req, res) {
+
+// add updates to replies, post and topics here. the incrementing of post/reply numbers
+
     if (req.session.success) {
       // COME BACK TO THIS
       db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
