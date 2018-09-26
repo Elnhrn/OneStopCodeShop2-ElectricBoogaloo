@@ -22,10 +22,10 @@ module.exports = function(app) {
             // user: dbUser,
             posts: dbPosts,
             success: req.session.success
-          // });
+            // });
+          });
         });
       });
-    });
     } else {
       res.redirect("/login");
     }
@@ -105,25 +105,22 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/posts", function(req, res) {
-    if (req.session.success) {
-      db.Posts.findAll({}).then(function(dbPosts2) {
-        // COME BACK TO THIS
-        db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(
-          function(dbPosts) {
-            res.render("posts/index", {
-              currentUser: req.session.user,
-              posts2: dbPosts2,
-              posts: dbPosts,
-              success: req.session.success
-            });
-          }
-        );
-      });
-    } else {
-      res.redirect("/login");
-    }
-  });
+  // app.get("/posts", function (req, res) {
+  //   if (req.session.success) {
+  //     db.Posts.findAll({}).then(function (dbPosts2) {
+  //       // COME BACK TO THIS
+  //       db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
+  //         res.render("posts/index", {
+  //           posts2: dbPosts2,
+  //           posts: dbPosts,
+  //           success: req.session.success
+  //         });
+  //       });
+  //     });
+  //   } else {
+  //     res.redirect("/login");
+  //   }
+  // });
 
   app.get("/posts/:id", function(req, res) {
     if (req.session.success) {
@@ -154,7 +151,6 @@ module.exports = function(app) {
 
   app.get("/add-a-post", function(req, res) {
     if (req.session.success) {
-      // db.Posts.create({}).then(function(dbPosts) {
       db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
         res.render("createPost/index", {
           posts: dbPosts,
@@ -166,7 +162,24 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/logout", function(req, res) {
+  app.post("/add-a-post", function (req, res) {
+
+    // NEED TO FIX USER ID
+    db.Posts.create({
+      post_subject: req.body.post_title,
+      post_body: req.body.post_body,
+      post_rating: "0",
+      post_number: "0",
+      UserId: 1,
+      TopicId: req.body.topic_name
+    }).then(function () {
+      console.log("did this post?")
+      // res.redirect("/posts/" + this.id);
+      res.redirect("/forum");
+    });
+  });
+
+  app.get("/logout", function (req, res) {
     req.session.destroy();
     res.redirect("/");
   });
