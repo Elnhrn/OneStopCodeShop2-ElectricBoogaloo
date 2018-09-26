@@ -266,6 +266,7 @@ input:focus:-ms-input-placeholder {
 
 .padding, .post-title {
   padding: 5px;
+  padding-top: 25px;
 }
 
 .rating {
