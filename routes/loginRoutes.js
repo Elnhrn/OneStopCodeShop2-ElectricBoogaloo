@@ -18,21 +18,22 @@ function isUniqueUser(user) {
 module.exports = function(app) {
 
   app.use(validator({
-      customValidators: {
-        isUsernameAvailable: function(username) {
-            return db.Users.count({
-                where: {
-                  user_name: username
-                }
-              }).then(function(count) {
-                if (count != 0) {
-                  return false;
-                }
-                return true;
-              });
-        }
+    customValidators: {
+      isUsernameAvailable: function(username) {
+        return db.Users.count({
+            where: {
+              user_name: username
+          }
+          }).then(function(count) {
+          if (count != 0) {
+              return error;
+          } else {
+              return true;
+            }
+        });
       }
-  })
+    }
+    })
   );
 
   // LOGIN ROUTES
@@ -95,19 +96,19 @@ module.exports = function(app) {
     // isUniqueUser(newUsername).then(function(isUnique) {
     //   if(isUnique) {
     req.checkBody({
-      "firstName": {
+      firstName: {
         notEmpty: true,
         errorMessage: "First name is required"
       },
-      "lastName": {
+      lastName: {
         notEmpty: true,
         errorMessage: "Last name is required"
       },
-      "username": {
+      username: {
         notEmpty: true,
         errorMessage: "Username is required"
       },
-      "password": {
+      password: {
         notEmpty: true,
         errorMessage: "Password is required"
         // isLength: {
@@ -116,32 +117,39 @@ module.exports = function(app) {
         // },
         // equals: req.body.confirmPassword
       },
-      "confirmPassword": {
+      confirmPassword: {
         notEmpty: true,
         errorMessage: "Password Confirmation is required"
       }
     });
-    req.check("username", "This username is already taken")
+    req
+      .check("username", "This username is already taken")
       .isUsernameAvailable(req.body.username);
-    req.check("password", "Password should be longer than 4 characters").isLength({min:4}).equals(req.body.confirmPassword)
-    req.asyncValidationErrors().then(function() {
+    req
+      .check("password", "Password should be longer than 4 characters")
+      .isLength({ min: 4 })
+      .equals(req.body.confirmPassword);
+    req
+      .asyncValidationErrors()
+      .then(function() {
         db.Users.create({
-            user_firstName: req.body.firstName,
-            user_lastName: req.body.lastName,
+          user_firstName: req.body.firstName,
+          user_lastName: req.body.lastName,
           user_name: req.body.username,
           user_pass: req.body.password,
-            user_level: 0
-          }).then(function(user) {
+          user_level: 0
+        }).then(function(user) {
           req.session.user = user;
           req.session.success = true;
           res.redirect("/forum");
-          });
-    }).catch(function(errors) {
-      if(errors) {
+        });
+      })
+      .catch(function(errors) {
+        if (errors) {
           req.session.errors = errors;
           req.session.success = false;
           res.redirect("/register");
-      }
+        }
       });
 
     // if (errors) {
