@@ -31,7 +31,7 @@ module.exports = function(app) {
   });
 
   app.get("/account/:id", function(req, res) {
-    req.params.id = req.session.id;
+    // req.params.id = req.session.id;
     if (req.session.success) {
       db.Users.findOne({ where: { id: req.params.id } }).then(function(dbUsers) {
         db.Posts.findAll({ where: { UserId: req.params.id } }).then(function(dbPosts) {
@@ -143,7 +143,18 @@ module.exports = function(app) {
     } else {
       res.redirect("/login");
     }
-  });;
+  });
+
+  app.post("/posts/:id", function(req, res) {
+    db.Replies.create({
+      reply_content: req.body.replyBody,
+      reply_rating: 0,
+      PostId: 2,
+      UserId: 4
+    }).then(function (result) {
+      res.redirect("/posts/" + result.PostId)
+  })
+});
 
   app.get("/add-a-post", function(req, res) {
     if (req.session.success) {
@@ -164,14 +175,12 @@ module.exports = function(app) {
     db.Posts.create({
       post_subject: req.body.post_title,
       post_body: req.body.post_body,
-      post_rating: "0",
-      post_number: "0",
+      post_rating: 0,
+      post_number: 0,
       UserId: 1,
       TopicId: req.body.topic_name
-    }).then(function () {
-      console.log("did this post?")
-      // res.redirect("/posts/" + this.id);
-      res.redirect("/forum");
+    }).then(function (result) {
+      res.redirect("/posts/" + result.id);
     });
   });
 
