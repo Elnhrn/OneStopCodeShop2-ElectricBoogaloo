@@ -2,56 +2,58 @@
 <html>
 
 <head>
+  <!-- Bootstrap -->
+  {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"> --}}
+
+  <!-- Chat CSS -->
+  {{!-- <link rel="stylesheet" href="/styles/EGA_chat-styles.css" media="screen" title="no title" charset="utf-8"> --}}
+
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="styles/materialize.min.css" media="screen,projection" />
-  <link rel="stylesheet" href="/styles/EGA_chat-styles.css" media="screen" title="no title" charset="utf-8">
-  
-  <!--Our CSS-->
+  <link type="text/css" rel="stylesheet" href="/styles/materialize.min.css" media="screen,projection" />
+
+  <!-- Forum CSS-->
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+
   <!--Google Fonts-->
   <link href="https://fonts.googleapis.com/css?family=Lora|Playfair+Display|Pontano+Sans|Quicksand|Roboto+Condensed"
     rel="stylesheet">
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 
   <title>OneStopCodeShop | Forum</title>
 </head>
 
 <body>
-<div class="chatDiv">
-  {{> EGA_chat-index}}
-</div>
+  {{!-- <div class="chatDiv">
+    {{> EGA_chat-index}}
+  </div> --}}
+  
   {{#if success}}
-    {{> accountNav}}
+  {{> accountNav}}
   {{else}}
-    {{> nav}}
+  {{> nav}}
   {{/if}}
 
   {{{body}}}
-
-  <footer>
-    <div class="navbar-fixed footer">
-      <nav>
-        <div class="nav-wrapper">
-          chat here
-        </div>
-      </nav>
-      
-    </div>
-  </footer>
 
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="js/materialize.min.js"></script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
   <script src="/js/index.js"></script>
+
+
 </body>
 
 </html>
