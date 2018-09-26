@@ -16,6 +16,7 @@ module.exports = function(app) {
         db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
           // db.Users.findOne({}).then(function(dbUser) {
           res.render("forum/index", {
+            currentUser: req.session.user,
             msg: "Welcome to the forum!",
             title: "Forum",
             topics: dbTopics,
@@ -32,12 +33,12 @@ module.exports = function(app) {
   });
 
   app.get("/account/:id", function(req, res) {
-    // req.params.id = req.session.id;
     if (req.session.success) {
       db.Users.findOne({ where: { id: req.params.id } }).then(function(dbUsers) {
         db.Posts.findAll({ where: { UserId: req.params.id } }).then(function(dbPosts) {
           db.Replies.findAll({ where: { UserId: req.params.id } }).then(function(dbReplies) {
             res.render("myAccount/index", {
+              currentUser: req.session.user,
               users: dbUsers,
               title: "My Account",
               userPosts: dbPosts,
@@ -65,6 +66,7 @@ module.exports = function(app) {
           db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(
             function(dbPosts2) {
               res.render("topics/index", {
+                currentUser: req.session.user,
                 topics: dbTopics,
                 posts2: dbPosts2,
                 posts: dbPosts,
@@ -90,6 +92,7 @@ module.exports = function(app) {
           db.Replies.findAll({ where: { UserId: req.params.id } }).then(
             function(dbReplies) {
               res.render("author/index", {
+                currentUser: req.session.user,
                 user: dbUsers,
                 userPosts: dbPosts,
                 userReplies: dbReplies,
@@ -133,6 +136,7 @@ module.exports = function(app) {
           db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(
             function(dbPosts) {
               res.render("this-post/index", {
+                currentUser: req.session.user,
                 posts2: dbPosts2,
                 posts: dbPosts,
                 replies: dbReplies,
