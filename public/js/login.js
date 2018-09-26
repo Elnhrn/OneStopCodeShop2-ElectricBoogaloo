@@ -6,7 +6,7 @@ $(function() {
       user_name: user_name,
       password: password
     };
-    $.ajax("/api/user_name", {
+    $.ajax("/api/users", {
       type: "POST",
       data: newUser
     });
