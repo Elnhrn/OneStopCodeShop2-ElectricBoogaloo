@@ -7,7 +7,7 @@
                 <li><a href="https://eneaantonicelli.github.io/Project1/index.html">Code Search App</a></li>
                 <!-- add id file path for my account URL -->
                 <li><a href="/account/{{currentUser.id}}">My Account</a></li>
-                <li><a href="/logout">Log out</a></li>
+                <li><a href="/logout" id="logout">Log out</a></li>
             </ul>
         </div>
     </nav>
@@ -16,5 +16,5 @@
 <ul class="sidenav" id="mobile-demo">
     <li><a href="https://eneaantonicelli.github.io/Project1/index.html">Code Search App</a></li>
     <li><a href="/account/{{user.id}}">My Account</a></li>
-    <li><a href="/logout">Log out</a></li>
+    <li><a href="#modal1" onclick="location.href='/logout';">Log out</a></li>
 </ul>
