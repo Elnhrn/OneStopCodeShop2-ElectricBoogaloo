@@ -7,7 +7,7 @@
 
     <div class="row">
         <!-- post body -->
-        <div class="col m9 forum-col">
+        <div class="col-md-9 forum-col">
             <div class="body-title">{{posts2.post_subject}}<br>
             <i>{{posts2.updatedAt}}</i></div>
             <p class="padding">{{posts2.post_body}}</p>
@@ -22,7 +22,7 @@
                 {{/each}}
             </ul>
             <form action="/posts/{{posts2.id}}" method="post">
-            <div class="input-field col s12">
+            <div class="input-field col-sm-s12">
                 <textarea id="textarea1" placeholder="Write your comment here." class="materialize-textarea" name="replyBody"></textarea>
                 <label id="textarea1"></label>
             </div>
@@ -35,7 +35,7 @@
         </div>
 
         <!-- sidebar -->
-        <div class="col m3">
+        <div class="col-md-3">
             {{> sidebar}}
         </div>
 
