@@ -16,13 +16,14 @@
   margin: 30px;
 }
 #chatButton {
-  position: absolute;
+  position: fixed;
   z-index: 999;
-  background: none;
+  background: #26a69a;
   box-shadow: none;
-  right: 5%;
-  top: 7px;
-  font-family: 'Roboto Condensed', sans-serif;
+  cursor: pointer;
+  /* to move the button */
+  right: 17%;
+  bottom: 2%;
 }
 .chatWindow {
   border: solid 1px rgb(54, 54, 54);

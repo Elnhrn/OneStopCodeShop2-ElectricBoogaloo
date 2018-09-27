@@ -4,6 +4,7 @@ module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
     res.render("index", {
+      currentUser: req.session.user,
       msg: "Welcome to the electric boogaloo!",
       success: req.session.success,
       currentUser: req.session.user
