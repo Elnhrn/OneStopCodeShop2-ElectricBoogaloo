@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
 var expressSession = require("express-session");
+var MSSQLStore = require('connect-mssql')(expressSession);
 
 var db = require("./models");
 
@@ -16,6 +17,16 @@ var io = require("socket.io").listen(server);
 var PORT = process.env.PORT || 8080;
 server.listen(3000);
 
+var config = {
+  user: "root",
+  password: "root",
+  server: "localhost", // You can use 'localhost\\instance' to connect to named instance
+  database: "forumdb",
+  options: {
+    encrypt: true // Use this if you're on Windows Azure
+  }
+};
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -23,13 +34,11 @@ app.use(expressValidator());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(
   expressSession({
+    store: new MSSQLStore(config),
     key: "user_sid",
     secret: "JRS",
     saveUninitialized: false,
-    resave: false,
-    cookie: {
-      expires: 600000
-    }
+    resave: false
   })
 );
 
