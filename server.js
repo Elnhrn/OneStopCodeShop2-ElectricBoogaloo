@@ -13,7 +13,7 @@ let server;
 var app = express();
 server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
-var PORT = 8080;
+var PORT = process.env.PORT || 8080;
 server.listen(3000);
 
 // Middleware
