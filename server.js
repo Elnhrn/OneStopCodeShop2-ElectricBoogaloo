@@ -9,6 +9,8 @@ var MSSQLStore = require('connect-mssql')(expressSession);
 
 var db = require("./models");
 
+let server;
+
 var app = express();
 server = require("http").createServer(app);
 var io = require("socket.io").listen(server);

@@ -7,7 +7,7 @@ module.exports = function(app) {
     var query = {};
     // might need to change this so that it is referencing the proper forum post and any comments associated with that post.
     if (req.query.replies_id && req.query.user_id && req.query.topics_id) {
-      query.UsersId = req.query.users_id;
+      query.UserId = req.query.users_id;
     }
     db.Posts.findAll({
       where: query,
@@ -28,7 +28,7 @@ module.exports = function(app) {
     });
   });
   // POST route for saving a new post
-  app.post("/api/posts", function(req, res) {
+  app.post("/api/posts/:id", function(req, res) {
     db.Posts.create(req.body).then(function(dbPosts) {
       res.json(dbPosts);
     });
@@ -45,9 +45,9 @@ module.exports = function(app) {
   });
   // PUT route for updating posts
   app.put("/api/posts", function(req, res) {
-    db.Posts.update(req.body, {
+    db.Posts.update(post_number, {
       where: {
-        id: req.body.id
+        id: req.params.id
       }
     }).then(function(dbPosts) {
       res.json(dbPosts);

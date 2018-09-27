@@ -20,7 +20,7 @@
                 {{#each posts2}}
                 <tr>
                     <td><a href="/posts/{{this.id}}">{{this.post_subject}}</a></td>
-                    <td class="tcol2">0</td>
+                    <td class="tcol2">{{this.post_number}}</td>
                     <td>{{this.updatedAt}}</td>
                 </tr>
                 {{/each}}
