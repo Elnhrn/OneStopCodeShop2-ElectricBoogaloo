@@ -30,7 +30,8 @@ var sessionSetup = expressSession({
   store: new SequelizeStore({
     db: db,
     table: "Sessions",
-    checkExpirationInterval: 15 * 60 * 1000
+    checkExpirationInterval: 15 * 60 * 1000,
+    expiration: 24 * 60 * 60 * 1000
   }),
   saveUninitialized: false,
   resave: false
