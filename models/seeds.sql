@@ -1,5 +1,11 @@
 USE forum_db;
 
+CREATE TABLE sessions (
+    id varchar(255) NOT NULL PRIMARY KEY,
+    session varchar(300) NOT NULL,
+    expires datetime NOT NULL
+);
+
 INSERT INTO users (user_name, user_firstName, user_lastName, user_pass, user_level, createdAt, updatedAt)
 VALUES ('DrHughJiCok', 'Enea', 'Destiny', 'Key4Butthole', 0, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('Rawger', 'Roger', 'Pendenheimer', 'CurseUFlapjack', 1, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('MyLaifu4Waifu', 'Collin', 'Fumanchew', 'SenpaiPlz', 0, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('catsinablender','Elaine', 'Queen', 'lessthan3', 1, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), ('JS94', 'Jordan', 'Schrodinger', '1a2b3', 0, '2018/09/20 00:00:00', '2018/09/20 00:00:00');
 
