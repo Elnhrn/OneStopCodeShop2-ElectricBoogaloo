@@ -118,7 +118,6 @@ module.exports = function (app) {
             db.Replies.findAll({ where: { PostId: req.params.id } }).then(function (
               dbReplies
             ) {
-
               res.render("this-post/index", {
                 currentUser: req.session.user,
                 title: dbPosts2.post_subject,
@@ -126,10 +125,9 @@ module.exports = function (app) {
                 posts: dbPosts,
                 replies: dbReplies,
                 success: req.session.success
-              });
-            }
-            );
+            });
           });
+        });
         });
     } else {
       res.redirect("/login");
@@ -141,53 +139,76 @@ module.exports = function (app) {
     let currentUser = req.session.user;
     let postId = req.params.id
 
-    // NEED TO REFERENCE POST ID
     db.Replies.create({
       reply_content: req.body.replyBody,
       reply_rating: 0,
       PostId: postId,
       UserId: currentUser.id
     }).then(function (result) {
-      res.redirect("/posts/" + result.PostId)
+        res.redirect("/posts/" + result.PostId)
     })
+    
   });
 
-  app.get("/add-a-post", function (req, res) {
 
-// add updates to replies, post and topics here. the incrementing of post/reply numbers
+  // Save this to work on for next time
+//   app.put("/posts/:id", function (req, res) {
 
-    if (req.session.success) {
-      // COME BACK TO THIS
-      db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
-        res.render("createPost/index", {
-          currentUser: req.session.user,
-          title: "Make A Post",
-          posts: dbPosts,
-          success: req.session.success
-        });
+//     let postId = req.params.id
+//     let postIncrement = post_number + 1
+//     console.log(postId);
+
+
+//     db.Posts.update({
+//       post_number,
+//       where: {
+//         id: postId
+//       }
+//   }).then(function (result) {
+//     postIncrement
+//     console.log("working?")
+//     res.redirect("/posts/" + result.PostId)
+//   })
+// });
+
+
+
+app.get("/add-a-post", function (req, res) {
+
+  // add updates to replies, post and topics here. the incrementing of post/reply numbers
+
+  if (req.session.success) {
+    // COME BACK TO THIS
+    db.Posts.findAll({ order: [["post_rating", "ASC"]], limit: 5 }).then(function (dbPosts) {
+      res.render("createPost/index", {
+        currentUser: req.session.user,
+        title: "Make A Post",
+        posts: dbPosts,
+        success: req.session.success
       });
-    } else {
-      res.redirect("/login");
-    }
-  });
-
-  app.post("/add-a-post", function (req, res) {
-
-    let currentUser = req.session.user;
-    db.Posts.create({
-      post_subject: req.body.post_title,
-      post_body: req.body.post_body,
-      post_rating: 0,
-      post_number: 0,
-      UserId: currentUser.id,
-      TopicId: req.body.topic_name
-    }).then(function (result) {
-      res.redirect("/posts/" + result.id);
     });
-  });
+  } else {
+    res.redirect("/login");
+  }
+});
 
-  app.get("/logout", function (req, res) {
-    req.session.destroy();
-    res.redirect("/");
+app.post("/add-a-post", function (req, res) {
+
+  let currentUser = req.session.user;
+  db.Posts.create({
+    post_subject: req.body.post_title,
+    post_body: req.body.post_body,
+    post_rating: 0,
+    post_number: 0,
+    UserId: currentUser.id,
+    TopicId: req.body.topic_name
+  }).then(function (result) {
+    res.redirect("/posts/" + result.id);
   });
+});
+
+app.get("/logout", function (req, res) {
+  req.session.destroy();
+  res.redirect("/");
+});
 };

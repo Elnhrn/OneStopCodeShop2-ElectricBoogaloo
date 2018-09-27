@@ -9,7 +9,7 @@
         <!-- post body -->
         <div class="col-md-9 forum-col">
             <div class="body-title">{{posts2.post_subject}}<br>
-            <i>{{posts2.updatedAt}}</i></div>
+                <i>{{posts2.updatedAt}}</i></div>
             <p class="padding">{{posts2.post_body}}</p>
 
             <div class="body-title">COMMENTS ({{posts2.post_number}})</div>
@@ -17,19 +17,22 @@
             <ul class="user-posts">
                 {{#each replies}}
                 <li>{{this.reply_content}}<br>
-                <i>on {{this.updatedAt}}</i>
+                    <i>on {{this.updatedAt}}</i>
+                    <i>by <a href="/users/{{this.UserId}}"> User {{this.UserId}}</a></i>
                 </li>
                 {{/each}}
             </ul>
             <form action="/posts/{{posts2.id}}" method="post">
-            <div class="input-field col-sm-s12">
-                <textarea id="textarea1" placeholder="Write your comment here." class="materialize-textarea" name="replyBody"></textarea>
-                <label id="textarea1"></label>
-            </div>
-            <button class="btn waves-effect waves-light comment-submit" type="submit" name="action" id="submit">Submit
-                <i class="material-icons right">send</i>
-            </button>
-</form>
+                    <div class="input-field col-sm-s12">
+                        <textarea id="textarea1" placeholder="Write your comment here." class="materialize-textarea"
+                            name="replyBody"></textarea>
+                        <label id="textarea1"></label>
+                    </div>
+                    <button class="btn waves-effect waves-light comment-submit" type="submit" name="action" id="submit">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </form>
             <div class="go-back"><a href="/forum"><i class="material-icons tiny">arrow_back</i> BACK TO FORUM</a></div>
 
         </div>

@@ -5,7 +5,30 @@
 body {
   color: #3d3d3d;
   font-family: 'Pontano Sans', sans-serif;
-  margin-bottom: 80px;
+}
+
+/* footer */
+
+footer {
+  margin-top: 100px;
+}
+
+.page-footer {
+  padding-top: 0px !important;
+  background: #919191;
+}
+
+.footer-row {
+  margin-bottom: 0px !important;
+}
+
+h5 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+}
+
+.team {
+  text-align: center;
 }
 
 /* top fixed nav bar */
@@ -28,7 +51,7 @@ nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
 }
 
 .brand-logo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 24px !important;
 }
 
@@ -58,7 +81,7 @@ nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 30px;
   letter-spacing: 2px;
   font-weight: bold;
@@ -171,16 +194,6 @@ tr {
   font-weight: bold;
   letter-spacing: 1.5px;
 }
-
-/* footer */
-
-/* .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-} */
 
 /* login */
 
