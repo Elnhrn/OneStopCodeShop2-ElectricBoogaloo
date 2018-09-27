@@ -5,13 +5,14 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
 var expressSession = require("express-session");
+var MSSQLStore = require('connect-mssql')(expressSession);
 
 var db = require("./models");
 
 var app = express();
 server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
-var PORT = 8080;
+var PORT = process.env.PORT || 8080;
 server.listen(3000);
 
 // Middleware
@@ -21,6 +22,7 @@ app.use(expressValidator());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(
   expressSession({
+    store: new MSSQLStore(config, options),
     key: "user_sid",
     secret: "JRS",
     saveUninitialized: false,
