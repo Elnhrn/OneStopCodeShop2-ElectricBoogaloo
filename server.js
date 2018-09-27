@@ -7,7 +7,7 @@ var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
 var expressSession = require("express-session");
 var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
-
+var sharedSession = require("express-socket.io-session");
 
 var db = require("./models");
 
@@ -15,28 +15,32 @@ let server;
 
 var app = express();
 server = require("http").createServer(app);
-var io = require("socket.io").listen(server);
+var io = require("socket.io")();
+io.attach(server, {
+  pingInterval: 10000,
+  pingTimeout: 5000,
+  cookie: false
+});
 var PORT = process.env.PORT || 8080;
-server.listen(3000);
+// server.listen(PORT);
 
 // Middleware
+var sessionSetup = expressSession({
+  secret: "JRS",
+  store: new SequelizeStore({
+    db: db,
+    table: "Sessions",
+    checkExpirationInterval: 15 * 60 * 1000
+  }),
+  saveUninitialized: false,
+  resave: false
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(express.static(path.join(__dirname, "/public")));
-app.use(
-  expressSession({
-    secret: "JRS",
-    store: new SequelizeStore({
-      db: db,
-      table: "Sessions",
-      checkExpirationInterval: 15 * 60 * 1000
-    }),
-    saveUninitialized: false,
-    resave: false
-  })
-);
+app.use(sessionSetup);
 
 // Handlebars
 app.engine(
@@ -81,6 +85,8 @@ module.exports = app;
 
 users = [];
 connections = [];
+
+io.use(sharedSession(sessionSetup));
 
 io.sockets.on("connection", function(socket) {
   connections.push(socket);
