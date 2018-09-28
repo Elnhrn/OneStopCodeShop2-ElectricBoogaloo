@@ -1,20 +1,19 @@
 require("dotenv").config();
 var express = require("express");
-var path = require("path");
+// var path = require("path");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
 var expressSession = require("express-session");
-var cookieParser = require("cookie-parser");
+// var cookieParser = require("cookie-parser");
 // took out per ron
 // var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
 
 var db = require("./models");
 
-var server;
 
 var app = express();
-server = require("http").createServer(app);
+var server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
 var PORT = process.env.PORT || 3000;
 
@@ -29,7 +28,7 @@ var PORT = process.env.PORT || 3000;
 // };
 
 // Middleware
-var sessionSetup = expressSession({
+app.use(expressSession({
   key: "user_sid",
   secret: "JRS",
   // secret: "JRS",
@@ -43,13 +42,12 @@ var sessionSetup = expressSession({
   saveUninitialized: true,
   resave: false,
   cookies: { secure: false }
-});
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // app.use(cookieParser());
 app.use(expressValidator());
 app.use(express.static("public"));
-app.use(sessionSetup);
 
 // Handlebars
 app.engine(
