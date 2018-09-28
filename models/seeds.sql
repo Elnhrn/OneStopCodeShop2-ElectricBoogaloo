@@ -1,11 +1,3 @@
--- USE forum_db;
-
--- CREATE TABLE sessions (
---     id varchar(255) NOT NULL PRIMARY KEY,
---     session varchar(300) NOT NULL,
---     expires datetime NOT NULL
--- );
-
 INSERT INTO Users (user_name, user_firstName, user_lastName, user_pass, user_level, createdAt, updatedAt)
 VALUES ('Hunter4Lyfe', 'Enea', 'Destiny', 'Destiny2', 0, '2018/09/20 00:00:00', '2018/09/20 00:00:00'),
  ('Rawgher', 'Roger', 'Penderheimer', 'CurseUFlapjack', 1, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
