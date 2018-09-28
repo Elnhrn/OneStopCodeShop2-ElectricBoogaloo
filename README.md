@@ -8,7 +8,7 @@ OSCS's first iteration enabled students to easily **search** for resources onlin
 [![prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4.svg)](https://prettier.io/)
 
 ## Screenshots
-TODO
+![](/public/images/screenshot.gif)
 
 ## Tech/Libraries Used
 Built with:
@@ -38,8 +38,4 @@ Run the `schema.sql` to create the database and `seeds.sql` to create sample use
 Once you have completed installation, you can run `npm start` to start the application. You can access it at `localhost:3000`.
 
 ## Contributors
-| [![Elaine Hearn](https://avatars0.githubusercontent.com/u/38478442?s=460&v=4)](https://github.com/luflicesh)  | [![Roger Pender](https://avatars3.githubusercontent.com/u/37167764?s=460&v=4)](https://github.com/Rawgher) | [![Collin Chew](https://avatars1.githubusercontent.com/u/36747120?s=460&v=4)](https://github.com/juicychewc) | [![Enea Antonicelli](https://avatars1.githubusercontent.com/u/16923041?s=460&v=4)](https://github.com/EneaAntonicelli) | [![Jordan Schneider](https://avatars1.githubusercontent.com/u/38023691?s=460&v=4)](https://github.com/jschneid94) |
-|:---:|:---:|:---:|:---:|:---:|
-| [Elaine Hearn](https://github.com/luflicesh) | [Roger Pender](https://github.com/Rawgher) | [Collin Chew](https://github.com/juicychewc) | [Enea Antonicelli](https://github.com/EneaAntonicelli) | [Jordan Schneider](https://github.com/jschneid94)
-
 [![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/0)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/0)[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/1)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/1)[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/2)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/2)[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/3)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/3)[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/4)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/4)[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/5)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/5)[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/6)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/6)[![](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/images/7)](https://sourcerer.io/fame/jschneid94/luflicesh/OneStopCodeShop2-ElectricBoogaloo/links/7)

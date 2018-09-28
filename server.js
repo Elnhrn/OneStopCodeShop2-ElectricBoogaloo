@@ -7,7 +7,7 @@ var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
 var expressSession = require("express-session");
 var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
-var sharedSession = require("express-socket.io-session");
+// var sharedSession = require("express-socket.io-session");
 
 var db = require("./models");
 
@@ -15,14 +15,14 @@ let server;
 
 var app = express();
 server = require("http").createServer(app);
-var io = require("socket.io")();
-io.attach(server, {
-  pingInterval: 10000,
-  pingTimeout: 5000,
-  cookie: false
-});
+var io = require("socket.io").listen(server);
+// io.attach(server, {
+//   pingInterval: 10000,
+//   pingTimeout: 5000,
+//   cookie: false
+// });
 var PORT = process.env.PORT || 8080;
-// server.listen(PORT);
+server.listen(3000);
 
 // Middleware
 var sessionSetup = expressSession({
@@ -30,6 +30,7 @@ var sessionSetup = expressSession({
   store: new SequelizeStore({
     db: db,
     table: "Sessions",
+    disableTouch: true,
     checkExpirationInterval: 15 * 60 * 1000,
     expiration: 24 * 60 * 60 * 1000
   }),
@@ -87,7 +88,7 @@ module.exports = app;
 users = [];
 connections = [];
 
-io.use(sharedSession(sessionSetup));
+// io.use(sharedSession(sessionSetup));
 
 io.sockets.on("connection", function(socket) {
   connections.push(socket);
