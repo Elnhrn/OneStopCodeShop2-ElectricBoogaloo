@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 INSERT INTO Users (user_name, user_firstName, user_lastName, user_pass, user_level, createdAt, updatedAt)
+=======
+INSERT INTO users (user_name, user_firstName, user_lastName, user_pass, user_level, createdAt, updatedAt)
+>>>>>>> d1b2f81432767f1236597b598ad31b3a25fbf804
 VALUES ('Hunter4Lyfe', 'Enea', 'Destiny', 'Destiny2', 0, '2018/09/20 00:00:00', '2018/09/20 00:00:00'),
  ('Rawgher', 'Roger', 'Penderheimer', 'CurseUFlapjack', 1, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
  ('MyLaifu4Waifu', 'Collin', 'Fumanchew', 'SenpaiPlz', 0, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
