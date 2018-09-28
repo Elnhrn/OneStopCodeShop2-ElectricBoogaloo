@@ -1,53 +1,33 @@
 require("dotenv").config();
 var express = require("express");
-// var path = require("path");
+var path = require("path");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
 var expressSession = require("express-session");
-// var cookieParser = require("cookie-parser");
-// took out per ron
-// var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
-
 var db = require("./models");
 
 
 var app = express();
 var server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
-var PORT = process.env.PORT || 3000;
-
-// var config = {
-//   user: "root",
-//   password: "root",
-//   server: "localhost", // You can use 'localhost\\instance' to connect to named instance
-//   database: "forum_db",
-//   options: {
-//     encrypt: true // Use this if you're on Windows Azure
-//   }
-// };
+var PORT = process.env.PORT || 8080;
 
 // Middleware
-app.use(expressSession({
-  key: "user_sid",
-  secret: "JRS",
-  // secret: "JRS",
-  // store: new SequelizeStore({
-  //   db: db,
-  //   table: "Sessions",
-  //   disableTouch: true,
-  //   checkExpirationInterval: 15 * 60 * 1000,
-  //   expiration: 24 * 60 * 60 * 1000
-  // }),
-  saveUninitialized: true,
-  resave: false,
-  cookies: { secure: false }
-}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // app.use(cookieParser());
 app.use(expressValidator());
 app.use(express.static("public"));
+app.use(
+  expressSession({
+    key: "user_sid",
+    secret: "JRS",
+    resave: false,
+    saveUninitialized: true,
+    cookies: { secure: false }
+  })
+);
 
 // Handlebars
 app.engine(
