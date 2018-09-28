@@ -8,7 +8,6 @@ var expressValidator = require("express-validator");
 var expressSession = require("express-session");
 var db = require("./models");
 
-
 var app = express();
 var server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
@@ -28,7 +27,6 @@ var sessionSetup = expressSession({
 });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(cookieParser());
 app.use(expressValidator());
 app.use(express.static("public"));
 app.use(
