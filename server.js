@@ -5,42 +5,51 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
 var expressSession = require("express-session");
-var MSSQLStore = require('connect-mssql')(expressSession);
+var cookieParser = require("cookie-parser");
+// took out per ron
+// var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
 
 var db = require("./models");
 
-let server;
+var server;
 
 var app = express();
 server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
-var PORT = process.env.PORT || 8080;
-server.listen(3000);
+var PORT = process.env.PORT || 3000;
 
-var config = {
-  user: "root",
-  password: "root",
-  server: "localhost", // You can use 'localhost\\instance' to connect to named instance
-  database: "forumdb",
-  options: {
-    encrypt: true // Use this if you're on Windows Azure
-  }
-};
+// var config = {
+//   user: "root",
+//   password: "root",
+//   server: "localhost", // You can use 'localhost\\instance' to connect to named instance
+//   database: "forum_db",
+//   options: {
+//     encrypt: true // Use this if you're on Windows Azure
+//   }
+// };
 
 // Middleware
+var sessionSetup = expressSession({
+  key: "user_sid",
+  secret: "JRS",
+  // secret: "JRS",
+  // store: new SequelizeStore({
+  //   db: db,
+  //   table: "Sessions",
+  //   disableTouch: true,
+  //   checkExpirationInterval: 15 * 60 * 1000,
+  //   expiration: 24 * 60 * 60 * 1000
+  // }),
+  saveUninitialized: true,
+  resave: false,
+  cookies: { secure: false }
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+// app.use(cookieParser());
 app.use(expressValidator());
-app.use(express.static(path.join(__dirname, "/public")));
-app.use(
-  expressSession({
-    store: new MSSQLStore(config),
-    key: "user_sid",
-    secret: "JRS",
-    saveUninitialized: false,
-    resave: false
-  })
-);
+app.use(express.static("public"));
+app.use(sessionSetup);
 
 // Handlebars
 app.engine(
@@ -70,7 +79,7 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+  server.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
@@ -79,7 +88,7 @@ db.sequelize.sync(syncOptions).then(function() {
   });
 });
 
-module.exports = app;
+// module.exports = app;
 
 // CHAT APPLICATION CODE
 
