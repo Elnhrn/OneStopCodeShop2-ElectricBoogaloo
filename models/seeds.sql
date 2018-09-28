@@ -1,5 +1,3 @@
-USE forum_db;
-
 INSERT INTO users (user_name, user_firstName, user_lastName, user_pass, user_level, createdAt, updatedAt)
 VALUES ('Hunter4Lyfe', 'Enea', 'Destiny', 'Destiny2', 0, '2018/09/20 00:00:00', '2018/09/20 00:00:00'),
  ('Rawgher', 'Roger', 'Penderheimer', 'CurseUFlapjack', 1, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
@@ -7,14 +5,14 @@ VALUES ('Hunter4Lyfe', 'Enea', 'Destiny', 'Destiny2', 0, '2018/09/20 00:00:00', 
  ('GreyIsLife','Elaine', 'Queen', 'lessthan3', 1, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
  ('JS94', 'Jordan', 'Schrodinger', '1a2b3', 0, '2018/09/20 00:00:00', '2018/09/20 00:00:00');
 
-INSERT INTO topics (topic_name, topic_description, topic_number, UserId, createdAt, updatedAt)
+INSERT INTO Topics (topic_name, topic_description, topic_number, UserId, createdAt, updatedAt)
 VALUES ('HTML', 'All things DOM related', 1, 1, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
 ('CSS', 'Got style?', 2, 2, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
 ('Javascript', 'Front end moving parts', 2, 3, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
 ('API AJAX', 'Dealing with api and JSON', 1, 4, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
 ('mySQL', 'Sequel tables', 2, 5, '2018/09/20 00:00:00', '2018/09/20 00:00:00');
 
-INSERT INTO posts (post_subject, post_body, post_number, post_rating, TopicId, UserId, createdAt, updatedAt)
+INSERT INTO Posts (post_subject, post_body, post_number, post_rating, TopicId, UserId, createdAt, updatedAt)
 VALUES ('Make look nice', 'What CSS framework should I use to make my page look the best?', 3, 69, 2, 3, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
 ('I like a challenge', 'How can I make my code more difficult?', 6, 9, 3, 1, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
 ('A links', 'How do I use an <a> tag properly?', 1, 90, 1, 2, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
@@ -23,7 +21,7 @@ VALUES ('Make look nice', 'What CSS framework should I use to make my page look 
 ('DATEONLY!', "Why doesn't datatypes.DATEONLY work?????", 1, 1000000, 5, 2, '2018/09/20 00:00:00', '2018/09/20 00:00:00'),
 ('My code', "My code isn't working, what should I do?", 4, 15, 3, 5, '2018/09/20 00:00:00', '2018/09/20 00:00:00');
 
-INSERT INTO replies (reply_content, reply_rating, PostId, UserId, createdAt, updatedAt)
+INSERT INTO Replies (reply_content, reply_rating, PostId, UserId, createdAt, updatedAt)
 VALUES ('delete system32', 7500, 2, 4, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
 ('You need an href set to your desired location, and you can add a target if you want.', 8000, 3, 5, '2018/09/20 00:00:00', '2018/09/20 00:00:00'), 
 ('cry in a corner, then give it to me', 1500, 4, 4, '2018/09/20 00:00:00', '2018/09/20 00:00:00'),

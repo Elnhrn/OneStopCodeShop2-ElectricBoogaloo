@@ -6,23 +6,14 @@ var cookieParser = require("cookie-parser");
 var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
 var expressSession = require("express-session");
-var SequelizeStore = require("connect-session-sequelize")(expressSession.Store);
-var sharedSession = require("express-socket.io-session");
-
 var db = require("./models");
 
-let server;
 
 var app = express();
-server = require("http").createServer(app);
-var io = require("socket.io")();
-io.attach(server, {
-  pingInterval: 10000,
-  pingTimeout: 5000,
-  cookie: false
-});
+var server = require("http").createServer(app);
+var io = require("socket.io").listen(server);
 var PORT = process.env.PORT || 8080;
-// server.listen(PORT);
+
 
 // Middleware
 var sessionSetup = expressSession({
@@ -37,10 +28,18 @@ var sessionSetup = expressSession({
 });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(expressValidator());
-app.use(express.static(path.join(__dirname, "/public")));
-app.use(sessionSetup);
+app.use(express.static("public"));
+app.use(
+  expressSession({
+    key: "user_sid",
+    secret: "JRS",
+    resave: false,
+    saveUninitialized: true,
+    cookies: { secure: false }
+  })
+);
 
 // Handlebars
 app.engine(
@@ -70,7 +69,7 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+  server.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
@@ -79,7 +78,7 @@ db.sequelize.sync(syncOptions).then(function() {
   });
 });
 
-module.exports = app;
+// module.exports = app;
 
 // CHAT APPLICATION CODE
 
