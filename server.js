@@ -2,43 +2,40 @@ require("dotenv").config();
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
 var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
 var expressSession = require("express-session");
-var MSSQLStore = require('connect-mssql')(expressSession);
-
 var db = require("./models");
 
-let server;
-
 var app = express();
-server = require("http").createServer(app);
+var server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
 var PORT = process.env.PORT || 8080;
-server.listen(3000);
 
-var config = {
-  user: "root",
-  password: "root",
-  server: "localhost", // You can use 'localhost\\instance' to connect to named instance
-  database: "forumdb",
-  options: {
-    encrypt: true // Use this if you're on Windows Azure
-  }
-};
 
 // Middleware
+var sessionSetup = expressSession({
+  secret: "JRS",
+  store: new SequelizeStore({
+    db: db,
+    table: "Sessions",
+    checkExpirationInterval: 15 * 60 * 1000
+  }),
+  saveUninitialized: false,
+  resave: false
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(expressValidator());
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static("public"));
 app.use(
   expressSession({
-    store: new MSSQLStore(config),
     key: "user_sid",
     secret: "JRS",
-    saveUninitialized: false,
-    resave: false
+    resave: false,
+    saveUninitialized: true,
+    cookies: { secure: false }
   })
 );
 
@@ -70,7 +67,7 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+  server.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
@@ -79,12 +76,14 @@ db.sequelize.sync(syncOptions).then(function() {
   });
 });
 
-module.exports = app;
+// module.exports = app;
 
 // CHAT APPLICATION CODE
 
 users = [];
 connections = [];
+
+io.use(sharedSession(sessionSetup));
 
 io.sockets.on("connection", function(socket) {
   connections.push(socket);
